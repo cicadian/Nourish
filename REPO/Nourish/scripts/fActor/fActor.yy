@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"fActor",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"fActor",
+  "parent":{
+    "name":"Actors",
+    "path":"folders/Scripts/Actors.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
