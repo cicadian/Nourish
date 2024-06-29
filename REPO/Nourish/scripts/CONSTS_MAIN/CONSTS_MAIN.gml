@@ -39,4 +39,5 @@ function setup_controllers(){ // Run in Room1 Creation Code
 	// Create Controllers
 	instance_create_layer(0, 0, global.layer_cont, MAIN);
 	instance_create_layer(0, 0, global.layer_cont, GAME);
+	MAIN.alarm[0] = 1;
 }

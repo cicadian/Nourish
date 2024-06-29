@@ -1,0 +1,1 @@
+gamepads_init();
