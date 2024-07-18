@@ -4,8 +4,10 @@ function actor_move(){
 
 function actor_step(_id){
 	with (_id){
-		vec_x = gamepad_axis_value(global.gamepad_array[0], 0);
-		vec_y = gamepad_axis_value(global.gamepad_array[0], 1);
+		if (global.use_gamepad){
+			vec_x = gamepad_axis_value(global.gamepad_array[0], 0);
+			vec_y = gamepad_axis_value(global.gamepad_array[0], 1);
+		}
 		if (abs(vec_x) < 0.1 || abs(vec_y) < 0.1){
 			if (abs(vec_x) < 0.1){ 
 				vec_x = 0;

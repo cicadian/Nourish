@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"fPlayer",
   "isCompatibility":false,
   "isDnD":false,

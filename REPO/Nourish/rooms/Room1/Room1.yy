@@ -1,5 +1,5 @@
 {
-  "$GMRoom":"",
+  "$GMRoom":"v1",
   "%Name":"Room1",
   "creationCodeFile":"rooms/Room1/RoomCreationCode.gml",
   "inheritCode":false,
@@ -7,11 +7,7 @@
   "inheritLayers":false,
   "instanceCreationOrder":[],
   "isDnd":false,
-  "layers":[
-    {"$GMRLayer":"","%Name":"Folder_1","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[
-        {"$GMRLayer":"","%Name":"Folder_2","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Folder_2","properties":[],"resourceType":"GMRLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
-      ],"name":"Folder_1","properties":[],"resourceType":"GMRLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
-  ],
+  "layers":[],
   "name":"Room1",
   "parent":{
     "name":"Nourish",
