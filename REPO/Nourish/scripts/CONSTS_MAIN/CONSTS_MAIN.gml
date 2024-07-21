@@ -3,13 +3,14 @@
 #macro MAIN        oCont_Main
 #macro GAME        oCont_Game
 #macro PLAYER      oActor_Player
-#macro NATIVE_W    640
-#macro NATIVE_H    360
+#macro NATIVE_W    320
+#macro NATIVE_H    180
 #macro CELLSIZE_W  20
 #macro CELLSIZE_H  17 // The actual height of a hex tile is 22, but it tiles by 17
 #macro WORLDSIZE_W 20
 #macro WORLDSIZE_H 20
 #macro DEV_DRAW_GRID_COORDINATES false
+#macro DEV_DRAW_COLLISION true
 #macro KEYMAP_TINYNUM "0123456789"
 show_debug_message($"###### Constants defined from {script_get_name(CONSTS_MAIN)}. ######");
 

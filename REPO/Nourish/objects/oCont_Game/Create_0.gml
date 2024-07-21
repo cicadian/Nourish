@@ -9,10 +9,10 @@ ds_grid_clear(wall_grid, -1);
 //	wall_add(irandom(WORLDSIZE_W - 1), irandom(WORLDSIZE_H - 1));
 //}
 for (var _i = 0; _i < WORLDSIZE_W; _i++){
-	//wall_add(_i, 0);
-	//wall_add(_i, WORLDSIZE_H - 1);
-	//wall_add(0, _i);
-	//wall_add(WORLDSIZE_W - 1, _i);
+	wall_add(_i, 0);
+	wall_add(_i, WORLDSIZE_H - 1);
+	wall_add(0, _i);
+	wall_add(WORLDSIZE_W - 1, _i);
 }
 
 //wall_remove_circle(11, 11, 2);
@@ -23,3 +23,14 @@ wall_add_circle(12, 12, 4);
 wall_remove_circle(12, 12, 1);
 
 game_declare_methods();
+
+floor_surf = undefined;
+wall_surf  = undefined;
+actor_surf = undefined;
+
+cam_x = 0;
+cam_y = 0;
+
+show_debug_overlay(true);
+
+refresh_actor_surf = false;
