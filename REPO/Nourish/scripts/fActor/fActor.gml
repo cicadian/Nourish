@@ -8,6 +8,10 @@ function actor_step(_id){
 			vec_x = gamepad_axis_value(global.gamepad_array[0], 0);
 			vec_y = gamepad_axis_value(global.gamepad_array[0], 1);
 		}
+		else{
+			vec_x = 0;
+			vec_y = 0;
+		}
 		if (abs(vec_x) < 0.1 || abs(vec_y) < 0.1){
 			if (abs(vec_x) < 0.1){ 
 				vec_x = 0;

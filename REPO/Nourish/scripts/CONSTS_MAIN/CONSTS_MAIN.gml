@@ -7,6 +7,9 @@
 #macro NATIVE_H    360
 #macro CELLSIZE_W  20
 #macro CELLSIZE_H  17 // The actual height of a hex tile is 22, but it tiles by 17
+#macro WORLDSIZE_W 20
+#macro WORLDSIZE_H 20
+#macro DEV_DRAW_GRID_COORDINATES false
 #macro KEYMAP_TINYNUM "0123456789"
 show_debug_message($"###### Constants defined from {script_get_name(CONSTS_MAIN)}. ######");
 

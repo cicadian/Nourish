@@ -1,65 +1,49 @@
-function hex(x, y, r) constructor{
-	points = [];
-	var _point;
-	var _angle = 0;
-	repeat(6){
-		_point = [2];
-		_point[0] = x + floor(lengthdir_x(r, _angle));
-		_point[1] = y + floor(lengthdir_y(r, _angle));
-		array_push(points, _point);
-		_angle += 60;
-	}
-	static draw    = method(undefined, hex_draw);
-	static draw_at = method(undefined, hex_draw_at);
-}
-
-function hex_draw(){
-	var _point_a;
-	var _point_b;
-	for (var _i = 0; _i < 6; _i++){
-		_point_a = points[_i];
-		if (_i == 5){
-			_point_b = points[0];
-		}
-		else{
-			_point_b = points[_i + 1];
-		}
-		draw_line(_point_a[0], _point_a[1], _point_b[0], _point_b[1]);
-	}
-}
-
-function hex_draw_at(_x, _y){
-	var _point_a;
-	var _point_b;
-	for (var _i = 0; _i < 6; _i++){
-		_point_a = points[_i];
-		if (_i == 5){
-			_point_b = points[0];
-		}
-		else{
-			_point_b = points[_i + 1];
-		}
-		draw_line(_point_a[0] + _x, _point_a[1] + _y, _point_b[0] + _x, _point_b[1] + _y);
-	}
-}
-
 function hexgrid_get_bitmask(_x, _y){
-	var _right, _right_up, _left_up, _left, _left_down, _right_down;
-	if (_y mod 2 == 1){
-		_right      = wall_grid[# _x + 1, _y]     != -1;
-		_right_up   = wall_grid[# _x, _y - 1]     != -1;
-		_left_up    = wall_grid[# _x - 1, _y - 1] != -1;
-		_left       = wall_grid[# _x - 1, _y]     != -1;
-		_left_down  = wall_grid[# _x - 1, _y + 1] != -1;
-		_right_down = wall_grid[# _x, _y + 1]     != -1;
+	var _right      = true;
+	var _right_up   = true;
+	var _left_up    = true;
+	var _left       = true;
+	var _left_down  = true;
+	var _right_down = true;
+	if (is_even(_y)){ // Even Rows
+		if (_x + 1 < WORLDSIZE_W){
+			_right = wall_grid[# _x + 1, _y] != -1;
+			if (_y - 1 >= 0){
+				_right_up = wall_grid[# _x + 1, _y - 1] != -1;
+			}
+			if (_y + 1 < WORLDSIZE_H){
+				_right_down = wall_grid[# _x + 1, _y + 1] != -1;
+			}
+		}
+		if (_x - 1 >= 0){
+			_left = wall_grid[# _x - 1, _y] != -1;
+		}
+		if (_y - 1 >= 0){
+			_left_up = wall_grid[# _x, _y - 1] != -1;
+		}
+		if (_y + 1 < WORLDSIZE_H){
+			_left_down = wall_grid[# _x, _y + 1] != -1;
+		}
 	}
-	else{
-		_right      = wall_grid[# _x + 1, _y]     != -1;
-		_right_up   = wall_grid[# _x + 1, _y - 1]     != -1;
-		_left_up    = wall_grid[# _x, _y - 1]     != -1;
-		_left       = wall_grid[# _x - 1, _y]     != -1;
-		_left_down  = wall_grid[# _x, _y + 1]     != -1;
-		_right_down = wall_grid[# _x + 1, _y + 1] != -1;
+	else{ // Odd Rows
+		if (_x + 1 < WORLDSIZE_W){
+			_right = wall_grid[# _x + 1, _y] != -1;
+		}
+		if (_x - 1 >= 0){
+			_left = wall_grid[# _x - 1, _y] != -1;
+			if (_y - 1 >= 0){
+				_left_up = wall_grid[# _x - 1, _y - 1] != -1;
+			}
+			if (_y + 1 < WORLDSIZE_H){
+				_left_down = wall_grid[# _x - 1, _y + 1] != -1;
+			}
+		}
+		if (_y - 1 >= 0){
+			_right_up = wall_grid[# _x, _y - 1] != -1;
+		}
+		if (_y + 1 < WORLDSIZE_H){
+			_right_down = wall_grid[# _x, _y + 1] != -1;
+		}
 	}
 	var _bitmask = 0;
 	_bitmask += _right;
@@ -69,64 +53,6 @@ function hexgrid_get_bitmask(_x, _y){
 	_bitmask += _left_down  * 16;
 	_bitmask += _right_down * 32;
 	return _bitmask;
-}
-
-function hexgrid_get_neighbors(_x, _y){
-	var _array = [];
-	var _cell;
-	if (_y mod 2 == 1){
-		_cell = wall_grid[# _x + 1, _y];
-		if (_cell > -1){
-			array_push(_array, [_x + 1, _y]);
-		}
-		_cell = wall_grid[# _x, _y - 1];
-		if (_cell > -1){
-			array_push(_array, [_x, _y - 1]);
-		}
-		_cell = wall_grid[# _x - 1, _y - 1];
-		if (_cell > -1){
-			array_push(_array, [_x - 1, _y - 1]);
-		}
-		_cell = wall_grid[# _x - 1, _y];
-		if (_cell > -1){
-			array_push(_array, [_x - 1, _y]);
-		}
-		_cell = wall_grid[# _x - 1, _y + 1];
-		if (_cell > -1){
-			array_push(_array, [_x - 1, _y + 1]);
-		}
-		_cell = wall_grid[# _x, _y + 1];
-		if (_cell > -1){
-			array_push(_array, [_x, _y + 1]);
-		}
-	}
-	else{
-		_cell = wall_grid[# _x + 1, _y];
-		if (_cell > -1){
-			array_push(_array, [_x + 1, _y]);
-		}
-		_cell = wall_grid[# _x + 1, _y - 1];
-		if (_cell > -1){
-			array_push(_array, [_x + 1, _y - 1]);
-		}
-		_cell = wall_grid[# _x, _y - 1];
-		if (_cell > -1){
-			array_push(_array, [_x, _y - 1]);
-		}
-		_cell = wall_grid[# _x - 1, _y];
-		if (_cell > -1){
-			array_push(_array, [_x - 1, _y]);
-		}
-		_cell = wall_grid[# _x, _y + 1];
-		if (_cell > -1){
-			array_push(_array, [_x, _y + 1]);
-		}
-		_cell = wall_grid[# _x + 1, _y + 1];
-		if (_cell > -1){
-			array_push(_array, [_x + 1, _y + 1]);
-		}
-	}
-	return _array;
 }
 
 function hexgrid_lookup_bitmask(_bitmask){
