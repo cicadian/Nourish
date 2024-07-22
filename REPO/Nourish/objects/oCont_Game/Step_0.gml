@@ -2,6 +2,13 @@ if (!global.ready){exit;}
 
 actors_step();
 
+if (input_mouse_wheel_up()){
+	hotbar.previous();
+}
+if (input_mouse_wheel_down()){
+	hotbar.next();
+}
+
 if (!surface_exists(floor_surf)){
 	floor_surf = surface_create(WORLDSIZE_W * CELLSIZE_W, WORLDSIZE_H * CELLSIZE_H);
 	surface_set_target(floor_surf);

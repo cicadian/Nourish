@@ -19,8 +19,8 @@ function actors_step(){
 	}
 	cam_x = oActor_Player.x - NATIVE_W / 2;
 	cam_y = oActor_Player.y - NATIVE_H / 2;
-	cam_x = clamp(cam_x, 0, WORLDSIZE_W * CELLSIZE_W - 1);
-	cam_y = clamp(cam_y, 0, WORLDSIZE_H * CELLSIZE_H - 1);
+	cam_x = clamp(cam_x, 0, (WORLDSIZE_W * CELLSIZE_W) - NATIVE_W - 1);
+	cam_y = clamp(cam_y, 0, (WORLDSIZE_H * CELLSIZE_H) - NATIVE_H - 1);
 }
 
 function game_declare_methods(){
