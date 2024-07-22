@@ -449,6 +449,7 @@
     {"id":{"name":"sGUI_Hotbar_Actions","path":"sprites/sGUI_Hotbar_Actions/sGUI_Hotbar_Actions.yy",},},
     {"id":{"name":"sGUI_Hotbar_Selector","path":"sprites/sGUI_Hotbar_Selector/sGUI_Hotbar_Selector.yy",},},
     {"id":{"name":"sGUI_Hotbar_Square","path":"sprites/sGUI_Hotbar_Square/sGUI_Hotbar_Square.yy",},},
+    {"id":{"name":"sHex_White","path":"sprites/sHex_White/sHex_White.yy",},},
     {"id":{"name":"sMask_Player","path":"sprites/sMask_Player/sMask_Player.yy",},},
     {"id":{"name":"sTile_Dev","path":"sprites/sTile_Dev/sTile_Dev.yy",},},
     {"id":{"name":"sTile_Empty","path":"sprites/sTile_Empty/sTile_Empty.yy",},},
