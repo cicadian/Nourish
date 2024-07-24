@@ -441,6 +441,7 @@
     {"id":{"name":"sActor_Arrow","path":"sprites/sActor_Arrow/sActor_Arrow.yy",},},
     {"id":{"name":"sActor_Player","path":"sprites/sActor_Player/sActor_Player.yy",},},
     {"id":{"name":"sDev_Blueprint","path":"sprites/sDev_Blueprint/sDev_Blueprint.yy",},},
+    {"id":{"name":"sDev_Circle","path":"sprites/sDev_Circle/sDev_Circle.yy",},},
     {"id":{"name":"sDev_Controller","path":"sprites/sDev_Controller/sDev_Controller.yy",},},
     {"id":{"name":"sDev_GUI","path":"sprites/sDev_GUI/sDev_GUI.yy",},},
     {"id":{"name":"sFloor_Dirt","path":"sprites/sFloor_Dirt/sFloor_Dirt.yy",},},

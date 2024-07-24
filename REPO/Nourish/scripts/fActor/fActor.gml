@@ -86,6 +86,19 @@ function actor_step(_id){
 		if (abs(vec_x) > 0 || abs(vec_y) > 0){
 			dir = point_direction(0, 0, vec_x, vec_y);
 		}
+		
+		if (vec_x != 0 || vec_y != 0){
+			var _x_offset = 0;
+			var _dir_snap = dir div 60;
+			show_debug_message($"{_dir_snap} {grid_y} {vec_y}");
+			point_y = grid_y + sign(vec_y);
+			point_x = grid_x + sign(vec_x);
+			if (is_even(point_y)){
+				point_x -= 1;
+			}
+			show_debug_message($"{point_y}");
+			
+		}
 	}
 }
 
@@ -101,11 +114,23 @@ function actor_draw(_id){
 					_id.dir         , c_white         ,
 					1               );
 	var _x_offset = 0;
+	var _x_point_offset = 0;
 	if (is_even(_id.grid_y)){
 		_x_offset = CELLSIZE_W / 2;
+	}
+	if (is_even(_id.point_y)){
+		_x_point_offset = CELLSIZE_W / 2;
 	}
 	draw_sprite_ext(sHex_White, 0, 
 	_id.grid_x * CELLSIZE_W + _x_offset, 
 	_id.grid_y * CELLSIZE_H, 
 	1, 1, 0, c_white, 0.65);
+	draw_sprite_ext(sHex_White, 0,
+	_id.point_x * CELLSIZE_W + _x_point_offset,
+	_id.point_y * CELLSIZE_H,
+	1, 1, 0, c_red, 0.75);
+	draw_text(_id.x, _id.y, _id.grid_x);
+	draw_text(_id.x, _id.y + 5, _id.grid_y);
+	draw_text(_id.x + 24, _id.y + 24, _id.point_x);
+	draw_text(_id.x + 24, _id.y + 30, _id.point_y);
 }
