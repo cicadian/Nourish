@@ -1,61 +1,33 @@
-function hexgrid_get_bitmask(_x, _y){
-	var _right      = true;
-	var _right_up   = true;
-	var _left_up    = true;
-	var _left       = true;
-	var _left_down  = true;
-	var _right_down = true;
-	if (is_even(_y)){ // Even Rows
-		if (_x + 1 < WORLDSIZE_W){
-			_right = wall_grid[# _x + 1, _y] != -1;
-			if (_y - 1 >= 0){
-				_right_up = wall_grid[# _x + 1, _y - 1] != -1;
-			}
-			if (_y + 1 < WORLDSIZE_H){
-				_right_down = wall_grid[# _x + 1, _y + 1] != -1;
-			}
-		}
-		if (_x - 1 >= 0){
-			_left = wall_grid[# _x - 1, _y] != -1;
-		}
-		if (_y - 1 >= 0){
-			_left_up = wall_grid[# _x, _y - 1] != -1;
-		}
-		if (_y + 1 < WORLDSIZE_H){
-			_left_down = wall_grid[# _x, _y + 1] != -1;
-		}
+function get_bitmask(_x, _y){
+	var _right = true;
+	var _up    = true;
+	var _left  = true;
+	var _down  = true;
+	if (_x + 1 < WORLDSIZE_W){
+		_right = GAME.wall_grid[# _x + 1, _y];
 	}
-	else{ // Odd Rows
-		if (_x + 1 < WORLDSIZE_W){
-			_right = wall_grid[# _x + 1, _y] != -1;
-		}
-		if (_x - 1 >= 0){
-			_left = wall_grid[# _x - 1, _y] != -1;
-			if (_y - 1 >= 0){
-				_left_up = wall_grid[# _x - 1, _y - 1] != -1;
-			}
-			if (_y + 1 < WORLDSIZE_H){
-				_left_down = wall_grid[# _x - 1, _y + 1] != -1;
-			}
-		}
-		if (_y - 1 >= 0){
-			_right_up = wall_grid[# _x, _y - 1] != -1;
-		}
-		if (_y + 1 < WORLDSIZE_H){
-			_right_down = wall_grid[# _x, _y + 1] != -1;
-		}
+	if (_x - 1 >= 0){
+		_left = GAME.wall_grid[# _x - 1, _y];
+	}
+	if (_y + 1 < WORLDSIZE_H){
+		_up = GAME.wall_grid[# _x, _y - 1];
+	}
+	if (_y - 1 >= 0){
+		_down = GAME.wall_grid[# _x, _y + 1];
 	}
 	var _bitmask = 0;
 	_bitmask += _right;
-	_bitmask += _right_up   * 2;
-	_bitmask += _left_up    * 4;
-	_bitmask += _left       * 8;
-	_bitmask += _left_down  * 16;
-	_bitmask += _right_down * 32;
+	_bitmask += _right && _up   * 2;
+	_bitmask += _up             * 4;
+	_bitmask += _left && _up    * 8;
+	_bitmask += _left           * 16;
+	_bitmask += _left && _down  * 32;
+	_bitmask += _down           * 64;
+	_bitmask += _right && _down * 128;
 	return _bitmask;
 }
 
-function hexgrid_lookup_bitmask(_bitmask){
+function lookup_bitmask(_bitmask){
 	var _frame;
 	switch (_bitmask){
 		case 0:
@@ -198,57 +170,6 @@ function hexgrid_lookup_bitmask(_bitmask){
 			break;
 		case 58:
 			_frame = 46;
-			break;
-		case 53:
-			_frame = 47;
-			break;
-		case 27:
-			_frame = 48; // Bones
-			break;
-		case 54:
-			_frame = 49;
-			break;
-		case 45:
-			_frame = 50;
-			break;
-		case 39:
-			_frame = 51; // Shield
-			break;
-		case 15:
-			_frame = 52;
-			break;
-		case 30:
-			_frame = 53;
-			break;
-		case 60:
-			_frame = 54;
-			break;
-		case 57:
-			_frame = 55;
-			break;
-		case 51:
-			_frame = 56;
-			break;
-		case 47:
-			_frame = 57; // Chip
-			break;
-		case 31:
-			_frame = 58;
-			break;
-		case 62:
-			_frame = 59;
-			break;
-		case 61:
-			_frame = 60;
-			break;
-		case 59:
-			_frame = 61;
-			break;
-		case 55:
-			_frame = 62;
-			break;
-		case 63:
-			_frame = 63; // All
 			break;
 		default:
 			_frame = 0; // None
