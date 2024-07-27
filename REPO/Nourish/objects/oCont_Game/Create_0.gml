@@ -17,10 +17,10 @@ for (var _i = 0; _i < WORLDSIZE_W; _i++){
 
 //wall_remove_circle(11, 11, 2);
 //wall_remove_circle(6, 6,   2);
-wall_add_circle(6, 6, 2);
+//wall_add_circle(6, 6, 2);
 
-wall_add_circle(12, 12, 4);
-wall_remove_circle(12, 12, 1);
+//wall_add_circle(12, 12, 4);
+//wall_remove_circle(12, 12, 1);
 
 game_declare_methods();
 

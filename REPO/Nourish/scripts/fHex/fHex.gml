@@ -34,145 +34,145 @@ function lookup_bitmask(_bitmask){
 			_frame = 0; // Alone
 			break;
 		case 1:
-			_frame = 1; // Clockhands
-			break;
-		case 2:
-			_frame = 2;
+			_frame = 1;
 			break;
 		case 4:
-			_frame = 3;
-			break;
-		case 8:
-			_frame = 4;
+			_frame = 2;
 			break;
 		case 16:
-			_frame = 5;
+			_frame = 3;
 			break;
-		case 32:
-			_frame = 6;
-			break;
-		case 18:
-			_frame = 7; // Lines
-			break;
-		case 36:
-			_frame = 8;
-			break;
-		case 9:
-			_frame = 9;
-			break;
-		case 3:
-			_frame = 10; // Clusters
-			break;
-		case 6:
-			_frame = 11;
-			break;
-		case 12:
-			_frame = 12;
-			break;
-		case 24:
-			_frame = 13;
-			break;
-		case 48:
-			_frame = 14;
-			break;
-		case 33:
-			_frame = 15;
-			break;
-		case 5:
-			_frame = 16; // U
-			break;
-		case 10:
-			_frame = 17;
-			break;
-		case 20:
-			_frame = 18;
-			break;
-		case 40:
-			_frame = 19;
+		case 64:
+			_frame = 4;
 			break;
 		case 17:
-			_frame = 20;
+			_frame = 5;
 			break;
-		case 34:
-			_frame = 21;
+		case 68:
+			_frame = 6;
 			break;
-		case 21:
-			_frame = 22; // Triangles
+		case 5:
+			_frame = 7;
 			break;
-		case 42:
-			_frame = 23;
+		case 20:
+			_frame = 8;
 			break;
-		case 26:
-			_frame = 24; // Wiggler A
+		case 80:
+			_frame = 9;
 			break;
-		case 52:
-			_frame = 25;
-			break;
-		case 41:
-			_frame = 26;
-			break;
-		case 19:
-			_frame = 27;
-			break;
-		case 38:
-			_frame = 28;
-			break;
-		case 13:
-			_frame = 29;
-			break;
-		case 50:
-			_frame = 30; // Wiggler B
-			break;
-		case 37:
-			_frame = 31;
-			break;
-		case 11:
-			_frame = 32;
-			break;
-		case 22:
-			_frame = 33;
-			break;
-		case 44:
-			_frame = 34;
-			break;
-		case 25:
-			_frame = 35;
-			break;
-		case 35:
-			_frame = 36; // Shield
+		case 65:
+			_frame = 10;
 			break;
 		case 7:
-			_frame = 37;
-			break;
-		case 14:
-			_frame = 38;
+			_frame = 11;
 			break;
 		case 28:
-			_frame = 39;
+			_frame = 12;
 			break;
-		case 56:
-			_frame = 40;
+		case 112:
+			_frame = 13;
 			break;
-		case 49:
-			_frame = 41;
+		case 193:
+			_frame = 14;
 			break;
-		case 43:
-			_frame = 42; // Galor
+		case 69:
+			_frame = 15;
+			break;
+		case 21:
+			_frame = 16;
+			break;
+		case 84:
+			_frame = 17;
+			break;
+		case 81:
+			_frame = 18;
+			break;
+		case 85:
+			_frame = 19;
 			break;
 		case 23:
-			_frame = 43;
+			_frame = 20;
 			break;
-		case 46:
-			_frame = 44;
+		case 92:
+			_frame = 21;
+			break;
+		case 113:
+			_frame = 22;
+			break;
+		case 197:
+			_frame = 23;
+			break;
+		case 209:
+			_frame = 24;
+			break;
+		case 71:
+			_frame = 25;
 			break;
 		case 29:
+			_frame = 26;
+			break;
+		case 116:
+			_frame = 27;
+			break;
+		case 199:
+			_frame = 28;
+			break;
+		case 31:
+			_frame = 29;
+			break;
+		case 124:
+			_frame = 30;
+			break;
+		case 241:
+			_frame = 31;
+			break;
+		case 87:
+			_frame = 32;
+			break;
+		case 93:
+			_frame = 33;
+			break;
+		case 117:
+			_frame = 34;
+			break;
+		case 213:
+			_frame = 35;
+			break;
+		case 215:
+			_frame = 36;
+			break;
+		case 95:
+			_frame = 37;
+			break;
+		case 125:
+			_frame = 38;
+			break;
+		case 245:
+			_frame = 39;
+			break;
+		case 119:
+			_frame = 40;
+			break;
+		case 221:
+			_frame = 41;
+			break;
+		case 223:
+			_frame = 42;
+			break;
+		case 127:
+			_frame = 43;
+			break;
+		case 253:
+			_frame = 44;
+			break;
+		case 247:
 			_frame = 45;
 			break;
-		case 58:
+		case 255:
 			_frame = 46;
 			break;
 		default:
-			_frame = 0; // None
+			_frame = 0;
 			show_debug_message($"[WARNING] Bad bitmask! {_bitmask}");
 			break;
 	}

@@ -2,8 +2,8 @@ function wall_add(_x, _y){
 	wall_grid[# _x, _y] = 0;
 	wall_autotile_update(_x, _y);
 
-	var _bitmask = hexgrid_get_bitmask(_x, _y);
-	wall_grid[# _x, _y] = hexgrid_lookup_bitmask(_bitmask);
+	var _bitmask = get_bitmask(_x, _y);
+	wall_grid[# _x, _y] = lookup_bitmask(_bitmask);
 }
 function wall_remove(_x, _y){
 	wall_grid[# _x, _y] = -1;
@@ -21,8 +21,8 @@ function wall_add_circle(_x, _y, _radius){
 		wall_add(_cell[0], _cell[1]);
 	}
 	
-	var _bitmask = hexgrid_get_bitmask(_x, _y);
-	wall_grid[# _x, _y] = hexgrid_lookup_bitmask(_bitmask);
+	var _bitmask = get_bitmask(_x, _y);
+	wall_grid[# _x, _y] = lookup_bitmask(_bitmask);
 }
 function wall_remove_circle(_x, _y, _radius){
 	wall_remove(_x, _y);
@@ -42,8 +42,8 @@ function wall_autotile_update(_x, _y){
 	for (var _i = 0; _i < _size; _i++){
 		_cell = _neighbors[_i];
 		if (wall_grid[# _cell[0], _cell[1]] > -1){
-			_bitmask = hexgrid_get_bitmask(_cell[0], _cell[1]);
-			wall_grid[# _cell[0], _cell[1]] = hexgrid_lookup_bitmask(_bitmask);
+			_bitmask = get_bitmask(_cell[0], _cell[1]);
+			wall_grid[# _cell[0], _cell[1]] = lookup_bitmask(_bitmask);
 		}
 	}
 }

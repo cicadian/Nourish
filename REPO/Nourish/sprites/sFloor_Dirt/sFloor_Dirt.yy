@@ -2,9 +2,9 @@
   "$GMSprite":"",
   "%Name":"sFloor_Dirt",
   "bboxMode":0,
-  "bbox_bottom":21,
+  "bbox_bottom":15,
   "bbox_left":0,
-  "bbox_right":19,
+  "bbox_right":15,
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -19,7 +19,7 @@
   ],
   "gridX":0,
   "gridY":0,
-  "height":22,
+  "height":16,
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"e59ee6d8-cc5d-413b-8ab1-d06a48270ffb","blendMode":0,"displayName":"default","isLocked":false,"name":"e59ee6d8-cc5d-413b-8ab1-d06a48270ffb","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
@@ -98,5 +98,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":20,
+  "width":16,
 }
