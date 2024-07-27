@@ -1,29 +1,59 @@
 function get_bitmask(_x, _y){
-	var _right = true;
-	var _up    = true;
-	var _left  = true;
-	var _down  = true;
-	if (_x + 1 < WORLDSIZE_W){
-		_right = GAME.wall_grid[# _x + 1, _y];
+	var _right      = true;
+	var _right_up   = true;
+	var _up         = true;
+	var _left_up    = true;
+	var _left       = true;
+	var _left_down  = true;
+	var _down       = true;
+	var _right_down = true;
+	
+	var _in_bounds_right = _x + 1 < WORLDSIZE_W;
+	var _in_bounds_up    = _y - 1 >= 0;
+	var _in_bounds_left  = _x - 1 >= 0;
+	var _in_bounds_down  = _y + 1 < WORLDSIZE_H;
+	if (_in_bounds_right){
+		_right          = GAME.wall_grid[# _x + 1, _y    ] > -1;
+		if (_in_bounds_up){
+			_right_up   = GAME.wall_grid[# _x + 1, _y - 1] > -1;
+		}
+		if (_in_bounds_down){
+			_right_down = GAME.wall_grid[# _x + 1, _y + 1] > -1;
+		}
 	}
-	if (_x - 1 >= 0){
-		_left = GAME.wall_grid[# _x - 1, _y];
+	if (_in_bounds_up){
+		_up             = GAME.wall_grid[# _x    , _y - 1] > -1;
 	}
-	if (_y + 1 < WORLDSIZE_H){
-		_up = GAME.wall_grid[# _x, _y + 1];
+	if (_in_bounds_left){
+		_left           = GAME.wall_grid[# _x - 1, _y    ] > -1;
+		if (_in_bounds_up){
+			_left_up    = GAME.wall_grid[# _x - 1, _y - 1] > -1;
+		}
+		if (_in_bounds_down){
+			_left_down  = GAME.wall_grid[# _x - 1, _y + 1] > -1;
+		}
 	}
-	if (_y - 1 >= 0){
-		_down = GAME.wall_grid[# _x, _y - 1];
+	if (_in_bounds_down){
+		_down           = GAME.wall_grid[# _x    , _y + 1] > -1;
 	}
+	
 	var _bitmask = 0;
-	_bitmask += _right;
-	_bitmask += _right && _up   * 2;
+	_bitmask += _right          * 1;
+	if (_right && _up){
+		_bitmask += _right_up   * 2;
+	}
 	_bitmask += _up             * 4;
-	_bitmask += _left && _up    * 8;
+	if (_left && _up){
+		_bitmask += _left_up    * 8;
+	}
 	_bitmask += _left           * 16;
-	_bitmask += _left && _down  * 32;
+	if (_left && _down){
+		_bitmask += _left_down  * 32;
+	}
 	_bitmask += _down           * 64;
-	_bitmask += _right && _down * 128;
+	if (_right && _down){
+		_bitmask += _right_down * 128;
+	}
 	return _bitmask;
 }
 

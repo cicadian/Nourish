@@ -11,10 +11,16 @@ for (var _i = 0; _i < WORLDSIZE_W; _i++){
 	wall_add(0, _i);
 	wall_add(WORLDSIZE_W - 1, _i);
 }
-
 repeat(150){
 	wall_add(irandom(WORLDSIZE_W - 1), irandom(WORLDSIZE_H - 1));
 }
+
+
+wall_add(7, 6);
+wall_add(6, 7);
+wall_add(7, 7);
+wall_add(8, 7);
+wall_add(7, 8);
 
 //wall_remove_circle(11, 11, 2);
 //wall_remove_circle(6, 6,   2);
@@ -28,6 +34,9 @@ game_declare_methods();
 floor_surf = undefined;
 wall_surf  = undefined;
 actor_surf = undefined;
+if (DEV_MODE){
+	debug_surf = undefined;
+}
 
 cam_x = 0;
 cam_y = 0;

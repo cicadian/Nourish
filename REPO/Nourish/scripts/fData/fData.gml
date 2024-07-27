@@ -1,9 +1,12 @@
-function __search_grid_class(_x, _y, _radius, _diagonal) constructor{
+
+function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_value) constructor{
 	// Argument Members
 	x = _x;
 	y = _y;
 	radius = _radius;
 	diagonal = _diagonal;
+	search_grid = _search_grid;
+	skip_value = _skip_value;
 	
 	// Default Members
 	x_start = x;
@@ -26,9 +29,6 @@ function __search_grid_class(_x, _y, _radius, _diagonal) constructor{
 		if (!(x == x_start && y == y_start)){
 			array_push(neighbors, [x, y]);
 		}
-		if (x == 6 && y == 4){
-			show_debug_message("");
-		}
 		if (radius == 0){
 			return;
 		}
@@ -39,7 +39,9 @@ function __search_grid_class(_x, _y, _radius, _diagonal) constructor{
 		x++;
 		if (x < WORLDSIZE_W){
 			if (grid[# x, y] == 0){
-				ds_queue_enqueue(queue, [x, y, radius]);
+				if (search_grid[# x, y] != skip_value){
+					ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+				}
 			}
 		}
 		x--;
@@ -48,7 +50,9 @@ function __search_grid_class(_x, _y, _radius, _diagonal) constructor{
 		y--;
 		if (y >= 0){
 			if (grid[# x, y] == 0){
-				ds_queue_enqueue(queue, [x, y, radius]);
+				if (search_grid[# x, y] != skip_value){
+					ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+				}
 			}
 		}
 		y++;
@@ -57,7 +61,9 @@ function __search_grid_class(_x, _y, _radius, _diagonal) constructor{
 		x--;
 		if (x >= 0){
 			if (grid[# x, y] == 0){
-				ds_queue_enqueue(queue, [x, y, radius]);
+				if (search_grid[# x, y] != skip_value){
+					ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+				}
 			}
 		}
 		x++;
@@ -66,7 +72,9 @@ function __search_grid_class(_x, _y, _radius, _diagonal) constructor{
 		y++;
 		if (y < WORLDSIZE_H){
 			if (grid[# x, y] == 0){
-				ds_queue_enqueue(queue, [x, y, radius]);
+				if (search_grid[# x, y] != skip_value){
+					ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+				}
 			}
 		}
 		y--;
@@ -76,7 +84,9 @@ function __search_grid_class(_x, _y, _radius, _diagonal) constructor{
 			y--;
 			if (x < WORLDSIZE_W){
 				if (y >= 0){
-					ds_queue_enqueue(queue, [x, y, radius, diagonal]);
+					if (search_grid[# x, y] != skip_value){
+						ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+					}
 				}
 			}
 			y++;
@@ -86,7 +96,9 @@ function __search_grid_class(_x, _y, _radius, _diagonal) constructor{
 			y--;
 			if (x >= 0){
 				if (y >= 0){
-					ds_queue_enqueue(queue, [x, y, radius, diagonal]);
+					if (search_grid[# x, y] != skip_value){
+						ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+					}
 				}
 			}
 			x++;
@@ -96,7 +108,9 @@ function __search_grid_class(_x, _y, _radius, _diagonal) constructor{
 			y++;
 			if (x >= 0){
 				if (y < WORLDSIZE_H){
-					ds_queue_enqueue(queue, [x, y, radius, diagonal]);
+					if (search_grid[# x, y] != skip_value){
+						ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+					}
 				}
 			}
 			x++;
@@ -106,11 +120,21 @@ function __search_grid_class(_x, _y, _radius, _diagonal) constructor{
 			y++;
 			if (x < WORLDSIZE_W){
 				if (y < WORLDSIZE_H){
-					ds_queue_enqueue(queue, [x, y, radius, diagonal]);
+					if (search_grid[# x, y] != skip_value){
+						ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+					}
 				}
 			}
 			x--;
 			y--;
+		}
+		while (!ds_queue_empty(queue)){
+			var _cell = ds_queue_dequeue(queue);
+			x        = _cell[0];
+			y        = _cell[1];
+			radius   = _cell[2];
+			diagonal = _cell[3];
+			search();
 		}
 	}
 }
