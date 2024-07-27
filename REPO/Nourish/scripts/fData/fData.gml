@@ -1,8 +1,9 @@
-function __search_grid_class(_x, _y, _radius) constructor{
+function __search_grid_class(_x, _y, _radius, _diagonal) constructor{
 	// Argument Members
 	x = _x;
 	y = _y;
 	radius = _radius;
+	diagonal = _diagonal;
 	
 	// Default Members
 	x_start = x;
@@ -34,7 +35,6 @@ function __search_grid_class(_x, _y, _radius) constructor{
 		radius--;
 		// Check neighbors
 	
-		// Even or Odd Rows
 		// Right
 		x++;
 		if (x < WORLDSIZE_W){
@@ -44,6 +44,15 @@ function __search_grid_class(_x, _y, _radius) constructor{
 		}
 		x--;
 	
+		// Up
+		y--;
+		if (y >= 0){
+			if (grid[# x, y] == 0){
+				ds_queue_enqueue(queue, [x, y, radius]);
+			}
+		}
+		y++;
+	
 		// Left
 		x--;
 		if (x >= 0){
@@ -52,16 +61,8 @@ function __search_grid_class(_x, _y, _radius) constructor{
 			}
 		}
 		x++;
-	
-		// Up Left / Up Right
-		y--;
-		if (y >= 0){
-			if (grid[# x, y] == 0){
-				ds_queue_enqueue(queue, [x, y, radius]);
-			}
-		}
-		y++;
-		// Down Left / Down Right
+		
+		// Down
 		y++;
 		if (y < WORLDSIZE_H){
 			if (grid[# x, y] == 0){
@@ -69,63 +70,47 @@ function __search_grid_class(_x, _y, _radius) constructor{
 			}
 		}
 		y--;
-	
-		// Even numbered rows
-		if (is_even(y)){
+		if (diagonal){
 			// Up Right
 			x++;
 			y--;
-			if (x < WORLDSIZE_W && y >= 0){
-				if (grid[# x, y] == 0){
-					ds_queue_enqueue(queue, [x, y, radius]);
+			if (x < WORLDSIZE_W){
+				if (y >= 0){
+					ds_queue_enqueue(queue, [x, y, radius, diagonal]);
 				}
 			}
-			x--;
 			y++;
-		
-			// Down Right
-			x++;
-			y++;
-			if (x < WORLDSIZE_W && y < WORLDSIZE_H){
-				if (grid[# x, y] == 0){
-					ds_queue_enqueue(queue, [x, y, radius]);
-				}
-			}
 			x--;
-			y--;
-		}
-	
-		// Odd numbered rows
-		else{
 			// Up Left
 			x--;
 			y--;
-			if (x >= 0 && y >= 0){
-				if (grid[# x, y] == 0){
-					ds_queue_enqueue(queue, [x, y, radius]);
+			if (x >= 0){
+				if (y >= 0){
+					ds_queue_enqueue(queue, [x, y, radius, diagonal]);
 				}
 			}
 			x++;
 			y++;
-		
 			// Down Left
 			x--;
 			y++;
-			if (x >= 0 && y < WORLDSIZE_H){
-				if (grid[# x, y] == 0){
-					ds_queue_enqueue(queue, [x, y, radius]);
+			if (x >= 0){
+				if (y < WORLDSIZE_H){
+					ds_queue_enqueue(queue, [x, y, radius, diagonal]);
 				}
 			}
 			x++;
 			y--;
-		}
-		while (!ds_queue_empty(queue)){
-			var _cell = ds_queue_dequeue(queue);
-			x = _cell[0];
-			y = _cell[1];
-			radius = _cell[2];
-			search();
+			// Down Right
+			x++;
+			y++;
+			if (x < WORLDSIZE_W){
+				if (y < WORLDSIZE_H){
+					ds_queue_enqueue(queue, [x, y, radius, diagonal]);
+				}
+			}
+			x--;
+			y--;
 		}
 	}
-	//
 }

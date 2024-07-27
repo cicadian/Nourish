@@ -10,10 +10,10 @@ function get_bitmask(_x, _y){
 		_left = GAME.wall_grid[# _x - 1, _y];
 	}
 	if (_y + 1 < WORLDSIZE_H){
-		_up = GAME.wall_grid[# _x, _y - 1];
+		_up = GAME.wall_grid[# _x, _y + 1];
 	}
 	if (_y - 1 >= 0){
-		_down = GAME.wall_grid[# _x, _y + 1];
+		_down = GAME.wall_grid[# _x, _y - 1];
 	}
 	var _bitmask = 0;
 	_bitmask += _right;

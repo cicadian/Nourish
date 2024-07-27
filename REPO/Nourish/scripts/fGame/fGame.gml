@@ -24,20 +24,24 @@ function actors_step(){
 }
 
 function game_declare_methods(){
+	/// @func dev_draw_grid_coordinates
 	dev_draw_grid_coordinates = function(){
 		for (var _w = 0; _w < WORLDSIZE_W; _w++){
 			for (var _h = 0; _h < WORLDSIZE_H; _h++){
-				if (_h mod 2 == 0){
-					_x_offset = CELLSIZE_W / 2;
-				}
-				else{
-					_x_offset = 0;
-				}
-				draw_text_color(_w * CELLSIZE_W + _x_offset + 1, _h * CELLSIZE_H + 6, $"{_w}", c_maroon, c_maroon, c_maroon, c_maroon, 1);
-				draw_text_color(_w * CELLSIZE_W + _x_offset + 8, _h * CELLSIZE_H + 8, $"{_w}", c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
+				draw_text_color(_w * CELLSIZE_W + 1, _h * CELLSIZE_H + 6, $"{_w}", c_maroon, c_maroon, c_maroon, c_maroon, 1);
+				draw_text_color(_w * CELLSIZE_W + 8, _h * CELLSIZE_H + 8, $"{_w}", c_dkgray, c_dkgray, c_dkgray, c_dkgray, 1);
 			}
 		}
 	}
+	/// @func dev_draw_grid_value
+	dev_draw_grid_value = function(){
+		for (var _w = 0; _w < WORLDSIZE_W; _w++){
+			for (var _h = 0; _h < WORLDSIZE_H; _h++){
+				draw_text_color(_w * CELLSIZE_W + 1, _h * CELLSIZE_H + 8, $"{wall_grid[# _w, _h]}", c_black, c_black, c_black, c_black, 1);
+			}
+		}
+	}
+	/// @func dev_draw_collision
 	dev_draw_collision = function(){
 		draw_set_color(c_blue);
 		draw_set_alpha(0.65);
@@ -48,3 +52,4 @@ function game_declare_methods(){
 		draw_set_alpha(1);
 	}
 }
+dev_draw_grid_value();

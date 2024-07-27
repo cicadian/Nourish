@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"fHex",
+  "%Name":"fBitmask",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"fHex",
+  "name":"fBitmask",
   "parent":{
-    "name":"Scripts",
-    "path":"folders/Scripts.yy",
+    "name":"Utility",
+    "path":"folders/Scripts/Utility.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

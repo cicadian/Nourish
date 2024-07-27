@@ -5,14 +5,15 @@ actor_render_queue = ds_queue_create();
 wall_grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
 ds_grid_clear(wall_grid, -1);
 
-//repeat(2500){
-//	wall_add(irandom(WORLDSIZE_W - 1), irandom(WORLDSIZE_H - 1));
-//}
 for (var _i = 0; _i < WORLDSIZE_W; _i++){
 	wall_add(_i, 0);
 	wall_add(_i, WORLDSIZE_H - 1);
 	wall_add(0, _i);
 	wall_add(WORLDSIZE_W - 1, _i);
+}
+
+repeat(150){
+	wall_add(irandom(WORLDSIZE_W - 1), irandom(WORLDSIZE_H - 1));
 }
 
 //wall_remove_circle(11, 11, 2);
