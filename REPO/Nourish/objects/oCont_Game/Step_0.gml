@@ -30,13 +30,32 @@ if (!surface_exists(wall_surf)){
 	draw_clear_alpha(c_black, 0);
 	for (var _w = 0; _w < WORLDSIZE_W; _w++){
 		for (var _h = 0; _h < WORLDSIZE_H; _h++){
-			if (wall_grid[# _w, _h] > -1){
-				draw_sprite(sTile_Dev, wall_grid[# _w, _h], _w * CELLSIZE, _h * CELLSIZE);
+			if (GAME.wall_grid[# _w, _h] > -1){
+				draw_sprite(sTile_Dev, GAME.wall_grid[# _w, _h], _w * CELLSIZE, _h * CELLSIZE);
 			}
 		}
 	}
 	surface_reset_target();
 	world_collision_build();
+}
+else if (refresh_wall_surf){
+	if (sprite_exists(world_sprite)){
+		sprite_delete(world_sprite);
+	}
+	world_sprite = undefined;
+	wall_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
+	surface_set_target(wall_surf);
+	draw_clear_alpha(c_black, 0);
+	for (var _w = 0; _w < WORLDSIZE_W; _w++){
+		for (var _h = 0; _h < WORLDSIZE_H; _h++){
+			if (GAME.wall_grid[# _w, _h] > -1){
+				draw_sprite(sTile_Dev, GAME.wall_grid[# _w, _h], _w * CELLSIZE, _h * CELLSIZE);
+			}
+		}
+	}
+	surface_reset_target();
+	world_collision_build();
+	refresh_wall_surf = false;
 }
 if (!surface_exists(actor_surf)){
 	actor_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);

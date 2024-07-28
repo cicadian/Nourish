@@ -17,6 +17,11 @@ function actors_step(){
 	while (!ds_queue_empty(actor_step_queue)){
 		actor_step(ds_queue_dequeue(actor_step_queue));
 	}
+	
+	if (input_check("accept")){
+		hotbar.use();
+	}
+	
 	cam_x = oActor_Player.x - NATIVE_W / 2;
 	cam_y = oActor_Player.y - NATIVE_H / 2;
 	cam_x = clamp(cam_x, 0, (WORLDSIZE_W * CELLSIZE) - NATIVE_W);
@@ -37,7 +42,7 @@ function game_declare_methods(){
 	dev_draw_grid_value = function(){
 		for (var _w = 0; _w < WORLDSIZE_W; _w++){
 			for (var _h = 0; _h < WORLDSIZE_H; _h++){
-				draw_text_color(_w * CELLSIZE + 1, _h * CELLSIZE + 8, $"{wall_grid[# _w, _h]}", c_black, c_black, c_black, c_black, 1);
+				draw_text_color(_w * CELLSIZE + 1, _h * CELLSIZE + 8, $"{GAME.wall_grid[# _w, _h]}", c_black, c_black, c_black, c_black, 1);
 			}
 		}
 	}

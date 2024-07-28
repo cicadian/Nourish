@@ -38,12 +38,33 @@ function __hotbar_class() constructor{
 			choice = HOTBAR_NUM_ACTIONS - 1;
 		}
 	}
+	static use = function(){
+		var _arguments = [];
+		switch(choice){
+			case __HOTBAR_SLOTS.DIG:
+				_arguments[0] = oActor_Player;
+				break;
+			case __HOTBAR_SLOTS.ACTIVATE:
+				_arguments[0] = oActor_Player;
+				_arguments[1] = oActor_Player.target_id;
+				break;
+			case __HOTBAR_SLOTS.ATTACK:
+				_arguments[0] = oActor_Player;
+				_arguments[1] = oActor_Player.target_id;
+				break;
+			case __HOTBAR_SLOTS.TAMP:
+				_arguments[0] = oActor_Player;
+				break;
+		}
+		method_call(slots[choice], _arguments);
+	}
 }
 
-function __action_dig(_grid_x, _grid_y){
+function __action_dig(_digger_id){
 	// Perform a digging action on a given grid cell
-	var _cell = wall_grid[# _grid_x, _grid_y];
-	// Dig
+	if (point_in_rectangle(_digger_id.point_x, _digger_id.point_y, 0, 0, WORLDSIZE_W - 1, WORLDSIZE_H - 1)){
+		wall_dig(_digger_id.point_x, _digger_id.point_y);
+	}
 }
 
 function __action_activate(_actor_id, _activator_id){
@@ -71,7 +92,6 @@ function __action_attack(_attacker_id, _defender_id){
 	}
 }
 
-function __action_tamp(_grid_x, _grid_y){
-	var _cell = wall_grid[# _grid_x, _grid_y];
+function __action_tamp(_tamper_id){
 	// Tamp cell
 }

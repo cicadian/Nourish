@@ -39,6 +39,7 @@ cam_y = 0;
 show_debug_overlay(true);
 
 refresh_actor_surf = false;
+refresh_wall_surf  = false;
 
 window_set_cursor(cr_none);
 cursor_spr = sGUI_Cursor_Default;
