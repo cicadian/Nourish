@@ -188,6 +188,7 @@
     {"id":{"name":"fData","path":"scripts/fData/fData.yy",},},
     {"id":{"name":"fGame","path":"scripts/fGame/fGame.yy",},},
     {"id":{"name":"fHotbar","path":"scripts/fHotbar/fHotbar.yy",},},
+    {"id":{"name":"fLight","path":"scripts/fLight/fLight.yy",},},
     {"id":{"name":"fMain","path":"scripts/fMain/fMain.yy",},},
     {"id":{"name":"fMath","path":"scripts/fMath/fMath.yy",},},
     {"id":{"name":"fPlayer","path":"scripts/fPlayer/fPlayer.yy",},},

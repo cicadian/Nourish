@@ -50,7 +50,7 @@ function wall_autotile_update(_x, _y){
 }
 
 function wall_get_neighbors(_x, _y, _radius){
-	var _inst = new __search_grid_class(_x, _y, _radius, true, GAME.wall_grid, -1);
+	var _inst = new __search_grid_class(_x, _y, _radius, true, GAME.wall_grid, -1, __OPERATOR.EQUALS);
 	_inst.search();
 	_inst.clean();
 	return _inst.neighbors;

@@ -10,7 +10,7 @@
 #macro WORLDSIZE_H 20
 #macro DEV_MODE                  true
 #macro DEV_DRAW_GRID_COORDINATES false
-#macro DEV_DRAW_GRID_VALUE       false
+#macro DEV_DRAW_GRID_VALUE       true
 #macro DEV_DRAW_COLLISION        false
 #macro KEYMAP_TINYNUM "0123456789"
 show_debug_message($"###### Constants defined from {script_get_name(CONSTS_MAIN)}. ######");
