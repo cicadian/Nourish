@@ -11,9 +11,9 @@ for (var _i = 0; _i < WORLDSIZE_W; _i++){
 	wall_add(0, _i);
 	wall_add(WORLDSIZE_W - 1, _i);
 }
-//repeat(150){
-//	wall_add(irandom(WORLDSIZE_W - 1), irandom(WORLDSIZE_H - 1));
-//}
+repeat(12){
+	wall_add(irandom(WORLDSIZE_W - 1), irandom(WORLDSIZE_H - 1));
+}
 
 //wall_remove_circle(11, 11, 2);
 //wall_remove_circle(6, 6,   2);
@@ -21,6 +21,8 @@ for (var _i = 0; _i < WORLDSIZE_W; _i++){
 
 //wall_add_circle(12, 12, 4);
 //wall_remove_circle(12, 12, 1);
+
+world_sprite = undefined;
 
 game_declare_methods();
 

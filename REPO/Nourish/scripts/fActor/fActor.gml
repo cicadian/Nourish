@@ -45,12 +45,17 @@ function actor_step(_id){
 			
 			sub_x += vec_x * move_speed;
 			sub_y += vec_y * move_speed;
+			show_debug_message(sub_x);
 			repeat(abs(sub_x)){
-				x += sign(vec_x);
+				if (!place_meeting(x + sign(vec_x), y, GAME)){
+					x += sign(vec_x);
+				}
 				sub_x -= sign(vec_x);
 			}
 			repeat(abs(sub_y)){
-				y += sign(vec_y);
+				if (!place_meeting(x, y + sign(vec_y), GAME)){
+					y += sign(vec_y);
+				}
 				sub_y -= sign(vec_y);
 			}
 			grid_x = x div CELLSIZE;

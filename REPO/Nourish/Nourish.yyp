@@ -192,6 +192,7 @@
     {"id":{"name":"fMath","path":"scripts/fMath/fMath.yy",},},
     {"id":{"name":"fPlayer","path":"scripts/fPlayer/fPlayer.yy",},},
     {"id":{"name":"fWall","path":"scripts/fWall/fWall.yy",},},
+    {"id":{"name":"fWorld","path":"scripts/fWorld/fWorld.yy",},},
     {"id":{"name":"input_accessibility_global_cooldown_get","path":"scripts/input_accessibility_global_cooldown_get/input_accessibility_global_cooldown_get.yy",},},
     {"id":{"name":"input_accessibility_global_cooldown_set","path":"scripts/input_accessibility_global_cooldown_set/input_accessibility_global_cooldown_set.yy",},},
     {"id":{"name":"input_accessibility_global_toggle_get","path":"scripts/input_accessibility_global_toggle_get/input_accessibility_global_toggle_get.yy",},},

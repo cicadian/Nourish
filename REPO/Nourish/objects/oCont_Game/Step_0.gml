@@ -21,6 +21,10 @@ if (!surface_exists(floor_surf)){
 	surface_reset_target();
 }
 if (!surface_exists(wall_surf)){
+	if (sprite_exists(world_sprite)){
+		sprite_delete(world_sprite);
+	}
+	world_sprite = undefined;
 	wall_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
 	surface_set_target(wall_surf);
 	draw_clear_alpha(c_black, 0);
@@ -32,6 +36,7 @@ if (!surface_exists(wall_surf)){
 		}
 	}
 	surface_reset_target();
+	world_collision_build();
 }
 if (!surface_exists(actor_surf)){
 	actor_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
