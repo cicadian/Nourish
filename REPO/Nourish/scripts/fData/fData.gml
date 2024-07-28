@@ -19,7 +19,7 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 	//ds_grid_clear(grid, [0, 0]);
 	for (var _w = 0; _w < WORLDSIZE_W; _w++){
 		for (var _h = 0; _h < WORLDSIZE_H; _h++){
-			grid[# _w, _h] = [0, 0];
+			grid[# _w, _h] = {searched : false, search_radius : 0};
 		}
 	}
 	
@@ -29,9 +29,7 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 		ds_queue_destroy(queue);
 	}
 	static search = function(){
-		// Add this cell
-		grid[# x, y][0] = 1;
-		grid[# x, y][1] = radius;
+		grid[# x, y].search_radius = radius;
 	
 		// Exclude the start position from the final array
 		if (!(x == x_start && y == y_start)){
@@ -46,9 +44,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 		// Right
 		x++;
 		if (x < WORLDSIZE_W){
-			if (grid[# x, y][0] == 0){
+			if (grid[# x, y].searched == 0){
 				if (!comparison(search_grid[# x, y], skip_value, operator)){
-					ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+					ds_queue_enqueue(queue, [x, y, radius]);
+					grid[# x, y].searched = true;
 				}
 			}
 		}
@@ -57,9 +56,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 		// Up
 		y--;
 		if (y >= 0){
-			if (grid[# x, y][0] == 0){
+			if (grid[# x, y].searched == 0){
 				if (!comparison(search_grid[# x, y], skip_value, operator)){
-					ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+					ds_queue_enqueue(queue, [x, y, radius]);
+					grid[# x, y].searched = true;
 				}
 			}
 		}
@@ -68,9 +68,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 		// Left
 		x--;
 		if (x >= 0){
-			if (grid[# x, y][0] == 0){
+			if (grid[# x, y].searched == 0){
 				if (!comparison(search_grid[# x, y], skip_value, operator)){
-					ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+					ds_queue_enqueue(queue, [x, y, radius]);
+					grid[# x, y].searched = true;
 				}
 			}
 		}
@@ -79,9 +80,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 		// Down
 		y++;
 		if (y < WORLDSIZE_H){
-			if (grid[# x, y][0] == 0){
+			if (grid[# x, y].searched == 0){
 				if (!comparison(search_grid[# x, y], skip_value, operator)){
-					ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+					ds_queue_enqueue(queue, [x, y, radius]);
+					grid[# x, y].searched = true;
 				}
 			}
 		}
@@ -92,9 +94,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 			y--;
 			if (x < WORLDSIZE_W){
 				if (y >= 0){
-					if (grid[# x, y][0] == 0){
+					if (grid[# x, y].searched == 0){
 						if (!comparison(search_grid[# x, y], skip_value, operator)){
-							ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+							ds_queue_enqueue(queue, [x, y, radius]);
+							grid[# x, y].searched = true;
 						}
 					}
 				}
@@ -106,9 +109,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 			y--;
 			if (x >= 0){
 				if (y >= 0){
-					if (grid[# x, y][0] == 0){
+					if (grid[# x, y].searched == 0){
 						if (!comparison(search_grid[# x, y], skip_value, operator)){
-							ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+							ds_queue_enqueue(queue, [x, y, radius]);
+							grid[# x, y].searched = true;
 						}
 					}
 				}
@@ -120,9 +124,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 			y++;
 			if (x >= 0){
 				if (y < WORLDSIZE_H){
-					if (grid[# x, y][0] == 0){
+					if (grid[# x, y].searched == 0){
 						if (!comparison(search_grid[# x, y], skip_value, operator)){
-							ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+							ds_queue_enqueue(queue, [x, y, radius]);
+							grid[# x, y].searched = true;
 						}
 					}
 				}
@@ -134,9 +139,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 			y++;
 			if (x < WORLDSIZE_W){
 				if (y < WORLDSIZE_H){
-					if (grid[# x, y][0] == 0){
+					if (grid[# x, y].searched == 0){
 						if (!comparison(search_grid[# x, y], skip_value, operator)){
-							ds_queue_enqueue(queue, [x, y, radius, diagonal, search_grid, skip_value]);
+							ds_queue_enqueue(queue, [x, y, radius]);
+							grid[# x, y].searched = true;
 						}
 					}
 				}
@@ -149,7 +155,6 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 			x        = _cell[0];
 			y        = _cell[1];
 			radius   = _cell[2];
-			diagonal = _cell[3];
 			search();
 		}
 	}

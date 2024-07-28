@@ -16,8 +16,8 @@ for (var _i = 0; _i < WORLDSIZE_W; _i++){
 repeat(12){
 	wall_add(irandom(WORLDSIZE_W - 1), irandom(WORLDSIZE_H - 1));
 }
-repeat(5){
-	light_add(irandom_range(1, WORLDSIZE_W - 2), irandom_range(1, WORLDSIZE_H - 2), __LIGHT_LEVEL.BRIGHT + 2);
+repeat(3){
+	light_add(irandom_range(1, WORLDSIZE_W - 2), irandom_range(1, WORLDSIZE_H - 2), __LIGHT_LEVEL.BRIGHT);
 }
 
 //wall_remove_circle(11, 11, 2);
