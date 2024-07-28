@@ -9,3 +9,4 @@ sub_x = 0;
 sub_y = 0;
 move_speed = 0.75;
 target_id = noone;
+inventory_count = 0;

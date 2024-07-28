@@ -8,6 +8,18 @@ if (input_mouse_wheel_up()){
 if (input_mouse_wheel_down()){
 	hotbar.next();
 }
+if (input_check_pressed("slot_one")){
+	hotbar.choice = 0;
+}
+if (input_check_pressed("slot_two")){
+	hotbar.choice = 1;
+}
+if (input_check_pressed("slot_three")){
+	hotbar.choice = 2;
+}
+if (input_check_pressed("slot_four")){
+	hotbar.choice = 3;
+}
 
 if (!surface_exists(floor_surf)){
 	floor_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
