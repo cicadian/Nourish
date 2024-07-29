@@ -84,6 +84,31 @@ else{
 		surface_reset_target();
 	}
 }
+if (!surface_exists(light_surf)){
+	light_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
+	surface_set_target(light_surf);
+	draw_clear_alpha(COLOR_SHADOWS, 1);
+	for (var _w = 0; _w < WORLDSIZE_W; _w++){
+		for (var _h = 0; _h < WORLDSIZE_H; _h++){
+			if (light_grid[# _w, _h] > 0){
+				gpu_set_blendmode(bm_subtract);
+				draw_sprite_ext(sTile_Light, light_grid[# _w, _h], _w * CELLSIZE, _h * CELLSIZE, 1, 1, 0, c_black, 1);
+				gpu_set_blendmode(bm_add);
+				draw_sprite_ext(sTile_Light_Blue, light_grid[# _w, _h], _w * CELLSIZE, _h * CELLSIZE, 1, 1, 0, c_white, 0.325);
+			}
+		}
+	}
+	gpu_set_blendmode(bm_normal);
+	surface_reset_target();
+}
+else{
+	if (refresh_light_surf){
+		surface_set_target(light_surf);
+		//draw_clear_alpha(c_black, 1);
+		
+		surface_reset_target();
+	}
+}
 if (DEV_MODE){
 	if (!surface_exists(debug_surf)){
 		debug_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);

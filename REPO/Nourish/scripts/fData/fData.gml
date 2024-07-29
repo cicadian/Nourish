@@ -13,8 +13,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 	x_start = x;
 	y_start = y;
 	neighbors = [];
+	edges = [];
 	queue = ds_queue_create();
 	grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
+	skip = false;
 	ds_grid_clear(grid, undefined);
 	//ds_grid_clear(grid, [0, 0]);
 	for (var _w = 0; _w < WORLDSIZE_W; _w++){
@@ -30,7 +32,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 	}
 	static search = function(){
 		grid[# x, y].search_radius = radius;
-	
+		if (skip){
+			array_push(edges, [x, y]);
+			return;
+		}
 		// Exclude the start position from the final array
 		if (!(x == x_start && y == y_start)){
 			array_push(neighbors, [x, y]);
@@ -40,15 +45,16 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 		}
 		radius--;
 		// Check neighbors
-	
+		var _skip = true;
 		// Right
 		x++;
 		if (x < WORLDSIZE_W){
 			if (grid[# x, y].searched == 0){
 				if (!comparison(search_grid[# x, y], skip_value, operator)){
-					ds_queue_enqueue(queue, [x, y, radius]);
-					grid[# x, y].searched = true;
+					_skip = false;
 				}
+				ds_queue_enqueue(queue, [x, y, radius, _skip]);
+				grid[# x, y].searched = true;
 			}
 		}
 		x--;
@@ -58,9 +64,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 		if (y >= 0){
 			if (grid[# x, y].searched == 0){
 				if (!comparison(search_grid[# x, y], skip_value, operator)){
-					ds_queue_enqueue(queue, [x, y, radius]);
-					grid[# x, y].searched = true;
+					_skip = false;
 				}
+				ds_queue_enqueue(queue, [x, y, radius, _skip]);
+				grid[# x, y].searched = true;
 			}
 		}
 		y++;
@@ -70,9 +77,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 		if (x >= 0){
 			if (grid[# x, y].searched == 0){
 				if (!comparison(search_grid[# x, y], skip_value, operator)){
-					ds_queue_enqueue(queue, [x, y, radius]);
-					grid[# x, y].searched = true;
+					_skip = false;
 				}
+				ds_queue_enqueue(queue, [x, y, radius, _skip]);
+				grid[# x, y].searched = true;
 			}
 		}
 		x++;
@@ -82,9 +90,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 		if (y < WORLDSIZE_H){
 			if (grid[# x, y].searched == 0){
 				if (!comparison(search_grid[# x, y], skip_value, operator)){
-					ds_queue_enqueue(queue, [x, y, radius]);
-					grid[# x, y].searched = true;
+					_skip = false;
 				}
+				ds_queue_enqueue(queue, [x, y, radius, _skip]);
+				grid[# x, y].searched = true;
 			}
 		}
 		y--;
@@ -96,9 +105,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 				if (y >= 0){
 					if (grid[# x, y].searched == 0){
 						if (!comparison(search_grid[# x, y], skip_value, operator)){
-							ds_queue_enqueue(queue, [x, y, radius]);
-							grid[# x, y].searched = true;
+							_skip = false;
 						}
+						ds_queue_enqueue(queue, [x, y, radius, _skip]);
+						grid[# x, y].searched = true;
 					}
 				}
 			}
@@ -111,9 +121,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 				if (y >= 0){
 					if (grid[# x, y].searched == 0){
 						if (!comparison(search_grid[# x, y], skip_value, operator)){
-							ds_queue_enqueue(queue, [x, y, radius]);
-							grid[# x, y].searched = true;
+							_skip = false;
 						}
+						ds_queue_enqueue(queue, [x, y, radius, _skip]);
+						grid[# x, y].searched = true;
 					}
 				}
 			}
@@ -126,9 +137,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 				if (y < WORLDSIZE_H){
 					if (grid[# x, y].searched == 0){
 						if (!comparison(search_grid[# x, y], skip_value, operator)){
-							ds_queue_enqueue(queue, [x, y, radius]);
-							grid[# x, y].searched = true;
+							_skip = false;
 						}
+						ds_queue_enqueue(queue, [x, y, radius, _skip]);
+						grid[# x, y].searched = true;
 					}
 				}
 			}
@@ -141,9 +153,10 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 				if (y < WORLDSIZE_H){
 					if (grid[# x, y].searched == 0){
 						if (!comparison(search_grid[# x, y], skip_value, operator)){
-							ds_queue_enqueue(queue, [x, y, radius]);
-							grid[# x, y].searched = true;
+							_skip = false;
 						}
+						ds_queue_enqueue(queue, [x, y, radius, _skip]);
+						grid[# x, y].searched = true;
 					}
 				}
 			}
@@ -155,6 +168,7 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 			x        = _cell[0];
 			y        = _cell[1];
 			radius   = _cell[2];
+			skip     = _cell[3];
 			search();
 		}
 	}
