@@ -88,13 +88,22 @@ if (!surface_exists(light_surf)){
 	light_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
 	surface_set_target(light_surf);
 	draw_clear_alpha(COLOR_SHADOWS, 1);
+	var _value, _spr;
+	_spr = sTile_Light_Blue;
 	for (var _w = 0; _w < WORLDSIZE_W; _w++){
 		for (var _h = 0; _h < WORLDSIZE_H; _h++){
-			if (light_grid[# _w, _h] > 0){
+			_value = light_grid[# _w, _h];
+			if (_value > 0){
 				gpu_set_blendmode(bm_subtract);
-				draw_sprite_ext(sTile_Light, light_grid[# _w, _h], _w * CELLSIZE, _h * CELLSIZE, 1, 1, 0, c_black, 1);
-				gpu_set_blendmode(bm_add);
-				draw_sprite_ext(sTile_Light_Blue, light_grid[# _w, _h], _w * CELLSIZE, _h * CELLSIZE, 1, 1, 0, c_white, 0.325);
+				draw_sprite_ext(sTile_Light, _value, _w * CELLSIZE, _h * CELLSIZE, 1, 1, 0, c_black, 1);
+				if (_value < 5){
+					gpu_set_blendmode(bm_add);
+					draw_sprite_ext(_spr, _value, _w * CELLSIZE, _h * CELLSIZE, 1, 1, 0, c_white, 0.325);
+				}
+				else{
+					gpu_set_blendmode(bm_subtract);
+					draw_sprite_ext(sTile_Light, _value, _w * CELLSIZE, _h * CELLSIZE, 1, 1, 0, c_white, 1);
+				}
 			}
 		}
 	}

@@ -457,6 +457,7 @@
     {"id":{"name":"sTile_Dev","path":"sprites/sTile_Dev/sTile_Dev.yy",},},
     {"id":{"name":"sTile_Empty","path":"sprites/sTile_Empty/sTile_Empty.yy",},},
     {"id":{"name":"sTile_Light_Blue","path":"sprites/sTile_Light_Blue/sTile_Light_Blue.yy",},},
+    {"id":{"name":"sTile_Light_Green","path":"sprites/sTile_Light_Green/sTile_Light_Green.yy",},},
     {"id":{"name":"sTile_Light","path":"sprites/sTile_Light/sTile_Light.yy",},},
     {"id":{"name":"sTile_White","path":"sprites/sTile_White/sTile_White.yy",},},
     {"id":{"name":"sWall_Dirt","path":"sprites/sWall_Dirt/sWall_Dirt.yy",},},

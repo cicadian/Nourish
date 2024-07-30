@@ -40,9 +40,11 @@ function game_declare_methods(){
 	}
 	/// @func dev_draw_grid_value
 	dev_draw_grid_value = function(){
+		var _value;
 		for (var _w = 0; _w < WORLDSIZE_W; _w++){
 			for (var _h = 0; _h < WORLDSIZE_H; _h++){
-				draw_text_color(_w * CELLSIZE + 1, _h * CELLSIZE + 8, $"{GAME.light_grid[# _w, _h]}", c_black, c_black, c_black, c_black, 1);
+				_value = GAME.light_grid[# _w, _h];
+				draw_text_color(_w * CELLSIZE + 1, _h * CELLSIZE + 8, $"{_value}", c_black, c_black, c_black, c_black, 1);
 			}
 		}
 	}
