@@ -31,6 +31,9 @@ function setup(){
 	display_set_gui_size(NATIVE_W * global.window_scale, NATIVE_H * global.window_scale);
 	window_center();
 	
+	// Cursor
+	window_set_cursor(cr_none);
+	
 	global.setup = true;
 	_load_time = current_time - _load_time;
 	show_debug_message($"###### Setup complete in {_load_time} milliseconds. ######");

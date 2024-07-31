@@ -1,12 +1,21 @@
+// Methods
+game_declare_methods();
+#region List of Methods
+/*
+dev_draw_collision
+dev_draw_grid_coordinates
+dev_draw_grid_value
+*/
+#endregion
+
+// Actor Management
 player_create();
 actor_step_queue   = ds_queue_create();
 actor_render_queue = ds_queue_create();
 
+// World Geometry
 wall_grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
-light_grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
 ds_grid_clear(wall_grid, -1);
-ds_grid_clear(light_grid, 0);
-light_arr = [];
 
 for (var _i = 0; _i < WORLDSIZE_W; _i++){
 	wall_add(_i, 0);
@@ -14,60 +23,58 @@ for (var _i = 0; _i < WORLDSIZE_W; _i++){
 	wall_add(0, _i);
 	wall_add(WORLDSIZE_W - 1, _i);
 }
-repeat(12){
-	wall_add(irandom(WORLDSIZE_W - 1), irandom(WORLDSIZE_H - 1));
-}
+wall_add(4, 1);
+wall_add(4, 2);
+wall_add(4, 3);
+wall_add(4, 4);
+wall_add(4, 5);
+wall_add(4, 6);
 
-light_add(3, 3, __LIGHT_LEVEL.BRIGHT);
-light_add(4, 3, __LIGHT_LEVEL.BRIGHT);
-light_add(5, 3, __LIGHT_LEVEL.BRIGHT);
-light_add(6, 3, __LIGHT_LEVEL.BRIGHT);
-light_add(7, 3, __LIGHT_LEVEL.BRIGHT);
-light_add(8, 4, __LIGHT_LEVEL.BRIGHT);
-light_add(17, 17, __LIGHT_LEVEL.BRIGHT);
+// Lighting
+light_grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
+ds_grid_clear(light_grid, 0);
+light_arr = [];
+//light_add(3, 3, 15, 2);
+light_add(3, 3, __LIGHT_LEVEL.BRIGHT, LIGHT_MAX_VALUE);
+light_add(3, 4, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
+light_add(3, 5, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
+light_add(3, 6, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
+light_add(4, 7, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
+light_add(5, 8, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
+light_add(6, 8, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
+light_add(7, 8, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
+light_add(8, 8, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
+light_add(9, 7, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
+light_add(10, 6, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
+light_add(11, 5, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
+light_add(17, 3, __LIGHT_LEVEL.BRIGHT + 3, LIGHT_MAX_VALUE);
+light_add(12, 5, __LIGHT_LEVEL.BRIGHT, LIGHT_MAX_VALUE);
 
-//wall_remove_circle(11, 11, 2);
-//wall_remove_circle(6, 6,   2);
-//wall_add_circle(6, 6, 2);
-
-//wall_add_circle(12, 12, 4);
-//wall_remove_circle(12, 12, 1);
-
+// Collision
 world_sprite = undefined;
 
-game_declare_methods();
-
-floor_surf  = undefined;
-wall_surf   = undefined;
-actor_surf  = undefined;
-light_surf_0  = undefined;
-light_surf_1  = undefined;
-light_surf_2  = undefined;
-light_surf_3  = undefined;
-light_surf_4  = undefined;
-shadow_surf_0 = undefined;
-shadow_surf_1 = undefined;
-shadow_surf_2 = undefined;
-shadow_surf_3 = undefined;
-if (DEV_MODE){
-	debug_surf = undefined;
+// Rendering
+floor_surf  = undefined;    // Render background geometry here
+wall_surf   = undefined;    // Render world geometry here
+actor_surf  = undefined;    // Render actors here
+light_surf_0  = undefined;  // Used to subtract all DARK light values
+light_surf_1  = undefined;  // ... DIM
+light_surf_2  = undefined;  // ... MOODY
+light_surf_3  = undefined;  // ... LIT
+light_surf_4  = undefined;  // ... BRIGHT
+shadow_surf = undefined;    // Actual shadow/lighting overlay
+if (DEV_MODE){			    
+	debug_surf = undefined; // Used for debug values and other text overlays
 }
-
-shadow_frame = 0;
-shadow_counter = 0;
-shadow_counter_max = 36;
-shadow_flip = 1;
-shadow_arr = [];
-
-cam_x = 0;
-cam_y = 0;
-
-show_debug_overlay(true);
-
 refresh_actor_surf = false;
 refresh_wall_surf  = false;
 refresh_light_surf = false;
 
-window_set_cursor(cr_none);
+cam_x = 0;
+cam_y = 0;
+
+// Cursor
 cursor_spr = sGUI_Cursor_Default;
+
+// Hotbar
 hotbar = new __hotbar_class();

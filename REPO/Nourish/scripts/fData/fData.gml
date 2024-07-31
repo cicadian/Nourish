@@ -1,4 +1,14 @@
-
+/// @func __search_grid_class
+/// @desc {struct}
+/* -------------
+This class can be used to search a given grid from a given position where the recursion level is the radius
+You must also specify if diagonal searches are permitted and what value comparison to skip when searching
+__search_grid_class(x, y, 3, true, wall_grid, -1, __OPERATOR.EQUALS) would search 3 tiles out from [x,y]
+it would not permit searching further when it encounters a grid cell that equals -1.
+Searched cells that are within the given radius are added to the neighbors array
+Grid cells that terminate (radius of 0 or failed check) are added to the edge array
+You must run the clean() method when finished with this struct or there will be a memory leak
+------------- */
 function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_value, _operator) constructor{
 	// Argument Members
 	x = _x;
@@ -18,7 +28,6 @@ function __search_grid_class(_x, _y, _radius, _diagonal, _search_grid, _skip_val
 	grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
 	skip = false;
 	ds_grid_clear(grid, undefined);
-	//ds_grid_clear(grid, [0, 0]);
 	for (var _w = 0; _w < WORLDSIZE_W; _w++){
 		for (var _h = 0; _h < WORLDSIZE_H; _h++){
 			grid[# _w, _h] = {searched : false, search_radius : 0};

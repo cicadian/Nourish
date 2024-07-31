@@ -1,7 +1,9 @@
 if (!global.ready){exit;}
 
+// Manage Actors
 actors_step();
 
+// Update Hotbar
 if (input_mouse_wheel_up()){
 	hotbar.previous();
 }
@@ -21,6 +23,7 @@ if (input_check_pressed("slot_four")){
 	hotbar.choice = 3;
 }
 
+// Rebuild Surfaces
 if (!surface_exists(floor_surf)){
 	floor_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
 	surface_set_target(floor_surf);
@@ -100,7 +103,7 @@ if (!surface_exists(light_surf_0)){
 			_num_points = array_length(_value_array);
 			for (var _k = 0; _k < _num_points; _k++){
 				_point = _value_array[_k];
-				draw_sprite(sTile_Lightbrush_0, 4, _point[0] * CELLSIZE, _point[1] * CELLSIZE);
+				draw_sprite(sTile_Lightbrush, 4, _point[0] * CELLSIZE, _point[1] * CELLSIZE);
 			}
 		}
 	}
@@ -121,7 +124,7 @@ if (!surface_exists(light_surf_1)){
 			_num_points = array_length(_value_array);
 			for (var _k = 0; _k < _num_points; _k++){
 				_point = _value_array[_k];
-				draw_sprite(sTile_Lightbrush_0, 4, _point[0] * CELLSIZE, _point[1] * CELLSIZE);
+				draw_sprite(sTile_Lightbrush, 4, _point[0] * CELLSIZE, _point[1] * CELLSIZE);
 			}
 		}
 	}
@@ -142,7 +145,7 @@ if (!surface_exists(light_surf_2)){
 			_num_points = array_length(_value_array);
 			for (var _k = 0; _k < _num_points; _k++){
 				_point = _value_array[_k];
-				draw_sprite(sTile_Lightbrush_0, 4, _point[0] * CELLSIZE, _point[1] * CELLSIZE);
+				draw_sprite(sTile_Lightbrush, 4, _point[0] * CELLSIZE, _point[1] * CELLSIZE);
 			}
 		}
 	}
@@ -163,7 +166,7 @@ if (!surface_exists(light_surf_3)){
 			_num_points = array_length(_value_array);
 			for (var _k = 0; _k < _num_points; _k++){
 				_point = _value_array[_k];
-				draw_sprite(sTile_Lightbrush_0, 4, _point[0] * CELLSIZE, _point[1] * CELLSIZE);
+				draw_sprite(sTile_Lightbrush, 4, _point[0] * CELLSIZE, _point[1] * CELLSIZE);
 			}
 		}
 	}
@@ -184,18 +187,17 @@ if (!surface_exists(light_surf_4)){
 			_num_points = array_length(_value_array);
 			for (var _k = 0; _k < _num_points; _k++){
 				_point = _value_array[_k];
-				draw_sprite(sTile_Lightbrush_0, 4, _point[0] * CELLSIZE, _point[1] * CELLSIZE);
+				draw_sprite(sTile_Lightbrush, 4, _point[0] * CELLSIZE, _point[1] * CELLSIZE);
 			}
 		}
 	}
 	surface_reset_target();
 }
 
-if (!surface_exists(shadow_surf_0)){
-	shadow_arr = [];
+if (!surface_exists(shadow_surf)){
 	// Ambient Shadow, (fog color) this color is 100% opaque where there is no light
-	shadow_surf_0 = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
-	surface_set_target(shadow_surf_0);
+	shadow_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
+	surface_set_target(shadow_surf);
 	draw_clear_alpha(COLOR_SHADOWS, 1);
 	gpu_set_blendmode(bm_subtract);
 	draw_surface_ext(light_surf_0, 0, 0, 1, 1, 0, c_white, 0.3);
@@ -204,61 +206,13 @@ if (!surface_exists(shadow_surf_0)){
 	draw_surface_ext(light_surf_3, 0, 0, 1, 1, 0, c_white, 0.85);
 	gpu_set_blendmode(bm_normal);
 	surface_reset_target();
-	array_push(shadow_arr, shadow_surf_0);
 }
 else if (refresh_light_surf){
-	surface_set_target(shadow_surf_0);
+	surface_set_target(shadow_surf);
 	
 	surface_reset_target();
 }
-if (!surface_exists(shadow_surf_1)){
-	// Ambient Shadow, (fog color) this color is 100% opaque where there is no light
-	shadow_surf_1 = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
-	surface_set_target(shadow_surf_1);
-	draw_clear_alpha(COLOR_SHADOWS, 1);
-	gpu_set_blendmode(bm_subtract);
-	draw_surface(light_surf_1, 0, 0);
-	gpu_set_blendmode(bm_normal);
-	surface_reset_target();
-	array_push(shadow_arr, shadow_surf_1);
-}
-else if (refresh_light_surf){
-	surface_set_target(shadow_surf_1);
-	
-	surface_reset_target();
-}
-if (!surface_exists(shadow_surf_2)){
-	// Ambient Shadow, (fog color) this color is 100% opaque where there is no light
-	shadow_surf_2 = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
-	surface_set_target(shadow_surf_2);
-	draw_clear_alpha(COLOR_SHADOWS, 1);
-	gpu_set_blendmode(bm_subtract);
-	draw_surface(light_surf_2, 0, 0);
-	gpu_set_blendmode(bm_normal);
-	surface_reset_target();
-	array_push(shadow_arr, shadow_surf_2);
-}
-else if (refresh_light_surf){
-	surface_set_target(shadow_surf_2);
-	
-	surface_reset_target();
-}
-if (!surface_exists(shadow_surf_3)){
-	// Ambient Shadow, (fog color) this color is 100% opaque where there is no light
-	shadow_surf_3 = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
-	surface_set_target(shadow_surf_3);
-	draw_clear_alpha(COLOR_SHADOWS, 1);
-	gpu_set_blendmode(bm_subtract);
-	draw_surface(light_surf_3, 0, 0);
-	gpu_set_blendmode(bm_normal);
-	surface_reset_target();
-	array_push(shadow_arr, shadow_surf_3);
-}
-else if (refresh_light_surf){
-	surface_set_target(shadow_surf_3);
-	
-	surface_reset_target();
-}
+
 if (DEV_MODE){
 	if (!surface_exists(debug_surf)){
 		debug_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
@@ -273,13 +227,3 @@ if (DEV_MODE){
 		surface_reset_target();
 	}
 }
-
-if (shadow_counter == shadow_counter_max - 1){
-	shadow_flip = -1;
-}
-else if (shadow_counter == 0){
-	shadow_flip = 1;
-}
-shadow_counter += shadow_flip;
-shadow_frame = floor(EaseInSine(shadow_counter, 0, 3, shadow_counter_max));
-shadow_frame = 0;
