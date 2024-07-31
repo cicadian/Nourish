@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"timer_get_framelocked",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"timer_get_framelocked",
+  "parent":{
+    "name":"fuwafuwa",
+    "path":"folders/Libraries/fuwafuwa.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

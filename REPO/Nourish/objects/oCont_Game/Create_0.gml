@@ -18,12 +18,13 @@ repeat(12){
 	wall_add(irandom(WORLDSIZE_W - 1), irandom(WORLDSIZE_H - 1));
 }
 
-repeat(1){
-	light_add(irandom_range(1, WORLDSIZE_W - 2), irandom_range(1, WORLDSIZE_H - 2), __LIGHT_LEVEL.BRIGHT + 1, __LIGHT_COLOR.BLUE);
-}
-repeat(2){
-	light_add(irandom_range(1, WORLDSIZE_W - 2), irandom_range(1, WORLDSIZE_H - 2), __LIGHT_LEVEL.BRIGHT + 1, __LIGHT_COLOR.GREEN);
-}
+light_add(3, 3, __LIGHT_LEVEL.BRIGHT);
+light_add(4, 3, __LIGHT_LEVEL.BRIGHT);
+light_add(5, 3, __LIGHT_LEVEL.BRIGHT);
+light_add(6, 3, __LIGHT_LEVEL.BRIGHT);
+light_add(7, 3, __LIGHT_LEVEL.BRIGHT);
+light_add(8, 4, __LIGHT_LEVEL.BRIGHT);
+light_add(17, 17, __LIGHT_LEVEL.BRIGHT);
 
 //wall_remove_circle(11, 11, 2);
 //wall_remove_circle(6, 6,   2);
@@ -36,13 +37,27 @@ world_sprite = undefined;
 
 game_declare_methods();
 
-floor_surf = undefined;
-wall_surf  = undefined;
-actor_surf = undefined;
-light_surf = undefined; 
+floor_surf  = undefined;
+wall_surf   = undefined;
+actor_surf  = undefined;
+light_surf_0  = undefined;
+light_surf_1  = undefined;
+light_surf_2  = undefined;
+light_surf_3  = undefined;
+light_surf_4  = undefined;
+shadow_surf_0 = undefined;
+shadow_surf_1 = undefined;
+shadow_surf_2 = undefined;
+shadow_surf_3 = undefined;
 if (DEV_MODE){
 	debug_surf = undefined;
 }
+
+shadow_frame = 0;
+shadow_counter = 0;
+shadow_counter_max = 36;
+shadow_flip = 1;
+shadow_arr = [];
 
 cam_x = 0;
 cam_y = 0;

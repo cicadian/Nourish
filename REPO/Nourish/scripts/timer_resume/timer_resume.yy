@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"timer_resume",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"timer_resume",
+  "parent":{
+    "name":"fuwafuwa",
+    "path":"folders/Libraries/fuwafuwa.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
