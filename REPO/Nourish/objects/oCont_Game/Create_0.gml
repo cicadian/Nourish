@@ -18,32 +18,24 @@ for (var _i = 0; _i < WORLDSIZE_W; _i++){
 	wall_add(0, _i);
 	wall_add(WORLDSIZE_W - 1, _i);
 }
-wall_add(4, 1);
-wall_add(4, 2);
-wall_add(4, 3);
-wall_add(4, 4);
-wall_add(4, 5);
-wall_add(4, 6);
+
+// Floors
+floor_grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
+ds_grid_clear(floor_grid, __FLOOR.DIRT);
+var _x, _y;
+repeat(16){
+	_x = irandom(WORLDSIZE_W - 1);
+	_y = irandom(WORLDSIZE_H - 1);
+	ds_grid_set_region(floor_grid, _x, _y, _x + irandom(2), _y + irandom(2), __FLOOR.STONE);
+}
+ds_grid_set_disk(floor_grid, 8, 12, 2.5, __FLOOR.WATER);
+ds_grid_set_disk(floor_grid, 10, 13, 2.5, __FLOOR.WATER);
+ds_grid_set_disk(floor_grid, 15, 15, 2.5, __FLOOR.WATER);
 
 // Lighting
 light_grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
 ds_grid_clear(light_grid, 0);
 light_arr = [];
-//light_add(3, 3, 15, 2);
-light_add(3, 3, __LIGHT_LEVEL.BRIGHT, LIGHT_MAX_VALUE);
-light_add(3, 4, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
-light_add(3, 5, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
-light_add(3, 6, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
-light_add(4, 7, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
-light_add(5, 8, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
-light_add(6, 8, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
-light_add(7, 8, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
-light_add(8, 8, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
-light_add(9, 7, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
-light_add(10, 6, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
-light_add(11, 5, __LIGHT_LEVEL.MOODY, LIGHT_MAX_VALUE);
-light_add(17, 3, __LIGHT_LEVEL.BRIGHT + 3, LIGHT_MAX_VALUE);
-light_add(12, 5, __LIGHT_LEVEL.BRIGHT, LIGHT_MAX_VALUE);
 
 // Collision
 world_sprite = undefined;
@@ -76,7 +68,7 @@ hotbar = new __hotbar_class();
 
 // Actor Management
 player_create();
-heartvine_create(10, 10);
+heartvine_create(5, 5);
 actor_step_queue   = ds_queue_create();
 actor_render_queue = ds_queue_create();
 block_render_queue = ds_queue_create();

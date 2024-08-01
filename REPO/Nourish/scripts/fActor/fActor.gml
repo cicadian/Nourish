@@ -102,10 +102,5 @@ function block_draw(_id){
 			draw_sprite(sHeartvine_Arm, _vine.frame, _vine.x * CELLSIZE, _vine.y * CELLSIZE);
 			draw_sprite(sHeartvine_Arm, _vine.frame_grow, _vine.x * CELLSIZE, _vine.y * CELLSIZE);
 		}
-		var _size = array_length(HEARTVINE.tip_arr);
-		for (var _i = 0; _i < _size; _i++){
-			_tip = HEARTVINE.tip_arr[_i];
-			draw_sprite_ext(sHeartvine_Core, _tip.frame, _tip.x * CELLSIZE, _tip.y * CELLSIZE, 1, 1, 0, c_red, 1);
-		}
 	}
 }

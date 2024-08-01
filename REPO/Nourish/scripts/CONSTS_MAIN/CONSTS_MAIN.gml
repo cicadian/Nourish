@@ -10,7 +10,7 @@
 #macro WORLDSIZE_H 20
 #macro DEV_MODE                  true
 #macro DEV_DRAW_GRID_COORDINATES false
-#macro DEV_DRAW_GRID_VALUE       true
+#macro DEV_DRAW_GRID_VALUE       false
 #macro DEV_DRAW_COLLISION        false
 #macro KEYMAP_TINYNUM "0123456789"
 enum __DIR8{
@@ -46,6 +46,9 @@ function setup(){
 	
 	global.setup = true;
 	_load_time = current_time - _load_time;
+	
+	// Debug
+	show_debug_overlay(true);
 	show_debug_message($"###### Setup complete in {_load_time} milliseconds. ######");
 }
 

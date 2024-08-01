@@ -13,9 +13,10 @@ function __arm_class(_x, _y, _dir8, _parent) constructor{
 	array_push(HEARTVINE.vine_arr, self);
 	array_push(HEARTVINE.tip_arr, self);
 	GAME.refresh_actor_surf = true;
+	light_add(_x, _y, __LIGHT_LEVEL.BRIGHT, LIGHT_MAX_VALUE);
 	static grow = function(_dir8){
 		// Ignore sharp turns
-		if (abs(frame - _dir8) > 2){
+		if (abs(frame - _dir8) > 1){
 			return undefined;
 		}
 		var _next_x = x;
@@ -50,10 +51,15 @@ function __arm_class(_x, _y, _dir8, _parent) constructor{
 				_next_y++;
 				break;
 		}
+		// Stay in world
 		if (!point_in_rectangle(_next_x, _next_y, 0, 0, WORLDSIZE_W - 1, WORLDSIZE_H - 1)){
 			return undefined;
 		}
+		// Prevent collisions
 		if (HEARTVINE.grid[# _next_x, _next_y] != undefined){
+			return undefined;
+		}
+		if (GAME.wall_grid[# _next_x, _next_y] > -1){
 			return undefined;
 		}
 		// Prevent crossovers
