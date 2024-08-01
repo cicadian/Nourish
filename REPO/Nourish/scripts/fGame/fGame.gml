@@ -9,6 +9,14 @@ function actors_draw(){
 		dev_draw_collision();
 	}
 }
+function blocks_draw(){
+	with (oBlock_){
+		ds_queue_enqueue(other.block_render_queue, id);
+	}
+	while (!ds_queue_empty(block_render_queue)){
+		block_draw(ds_queue_dequeue(block_render_queue));
+	}
+}
 
 function actors_step(){
 	with (oActor_){

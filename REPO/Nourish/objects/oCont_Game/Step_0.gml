@@ -77,6 +77,7 @@ if (!surface_exists(actor_surf)){
 	surface_set_target(actor_surf);
 	draw_clear_alpha(c_black, 0);
 	actors_draw();
+	blocks_draw();
 	surface_reset_target();
 }
 else{
@@ -84,6 +85,7 @@ else{
 		surface_set_target(actor_surf);
 		draw_clear_alpha(c_black, 0);
 		actors_draw();
+		blocks_draw();
 		surface_reset_target();
 	}
 }

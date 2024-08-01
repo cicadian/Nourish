@@ -76,6 +76,7 @@ hotbar = new __hotbar_class();
 
 // Actor Management
 player_create();
-heartvine_create(15, 15);
+heartvine_create(10, 10);
 actor_step_queue   = ds_queue_create();
 actor_render_queue = ds_queue_create();
+block_render_queue = ds_queue_create();

@@ -79,14 +79,6 @@ function actor_step(_id){
 }
 
 function actor_draw(_id){
-	if (_id.object_index == oActor_Heartvine){
-		var _size = array_length(_id.frames_arr);
-		var _arm;
-		for (var _i = 0; _i < _size; _i++){
-			_arm = _id.frames_arr[_i];
-			draw_sprite(sHeartvine_Arm, _arm[2], _arm[0] * CELLSIZE, _arm[1] * CELLSIZE);
-		}
-	}
 	draw_sprite_ext(_id.sprite_index, _id.image_index ,
 					_id.x           , _id.y           ,
 					_id.image_xscale, _id.image_yscale,
@@ -97,4 +89,23 @@ function actor_draw(_id){
 	//				_id.image_xscale, _id.image_yscale,
 	//				_id.dir         , c_white         ,
 	//				1               );
+}
+
+function block_draw(_id){
+	draw_sprite(_id.sprite_index, _id.image_index ,
+				_id.x           , _id.y          );
+	if (_id == HEARTVINE){
+		var _vine, _tip;
+		var _size = array_length(HEARTVINE.vine_arr);
+		for (var _i = 0; _i < _size; _i++){
+			_vine = HEARTVINE.vine_arr[_i];
+			draw_sprite(sHeartvine_Arm, _vine.frame, _vine.x * CELLSIZE, _vine.y * CELLSIZE);
+			draw_sprite(sHeartvine_Arm, _vine.frame_grow, _vine.x * CELLSIZE, _vine.y * CELLSIZE);
+		}
+		var _size = array_length(HEARTVINE.tip_arr);
+		for (var _i = 0; _i < _size; _i++){
+			_tip = HEARTVINE.tip_arr[_i];
+			draw_sprite_ext(sHeartvine_Core, _tip.frame, _tip.x * CELLSIZE, _tip.y * CELLSIZE, 1, 1, 0, c_red, 1);
+		}
+	}
 }

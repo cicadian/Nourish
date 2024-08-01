@@ -1,12 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"oTile_Heartvine_Core",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"oBlock_",
+  "eventList":[],
   "managed":true,
-  "name":"oTile_Heartvine_Core",
+  "name":"oBlock_",
   "overriddenProperties":[],
   "parent":{
     "name":"Actors",
@@ -31,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sHeartvine_Core",
-    "path":"sprites/sHeartvine_Core/sHeartvine_Core.yy",
+    "name":"sDev_Blueprint",
+    "path":"sprites/sDev_Blueprint/sDev_Blueprint.yy",
   },
   "spriteMaskId":null,
   "visible":true,
