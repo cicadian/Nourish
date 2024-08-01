@@ -21,16 +21,18 @@ for (var _i = 0; _i < WORLDSIZE_W; _i++){
 
 // Floors
 floor_grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
-ds_grid_clear(floor_grid, __FLOOR.DIRT);
+floor_clear();
+
 var _x, _y;
-repeat(16){
+repeat(32){
 	_x = irandom(WORLDSIZE_W - 1);
 	_y = irandom(WORLDSIZE_H - 1);
-	ds_grid_set_region(floor_grid, _x, _y, _x + irandom(2), _y + irandom(2), __FLOOR.STONE);
+	floor_set_region(_x, _y, _x + irandom(2), _y + irandom(2), __FLOOR.STONE);
 }
-ds_grid_set_disk(floor_grid, 8, 12, 2.5, __FLOOR.WATER);
-ds_grid_set_disk(floor_grid, 10, 13, 2.5, __FLOOR.WATER);
-ds_grid_set_disk(floor_grid, 15, 15, 2.5, __FLOOR.WATER);
+floor_set_disc(1, 1, 3.5, __FLOOR.WATER);
+//ds_grid_set_disk(floor_grid, 8, 12, 2.5, __FLOOR.WATER);
+//ds_grid_set_disk(floor_grid, 10, 13, 2.5, __FLOOR.WATER);
+//ds_grid_set_disk(floor_grid, 15, 15, 2.5, __FLOOR.WATER);
 
 // Lighting
 light_grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
@@ -53,15 +55,19 @@ shadow_surf = undefined;    // Actual shadow/lighting overlay
 if (DEV_MODE){			    
 	debug_surf = undefined; // Used for debug values and other text overlays
 }
+refresh_floor_surf = false;
 refresh_actor_surf = false;
 refresh_wall_surf  = false;
 refresh_light_surf = false;
 
+// Camera
 cam_x = 0;
 cam_y = 0;
 
 // Cursor
 cursor_spr = sGUI_Cursor_Default;
+mouse_grid_x = 0;
+mouse_grid_y = 0;
 
 // Hotbar
 hotbar = new __hotbar_class();
@@ -72,3 +78,6 @@ heartvine_create(5, 5);
 actor_step_queue   = ds_queue_create();
 actor_render_queue = ds_queue_create();
 block_render_queue = ds_queue_create();
+
+// Inspector
+inspect_data = floor_grid[# 0, 0];

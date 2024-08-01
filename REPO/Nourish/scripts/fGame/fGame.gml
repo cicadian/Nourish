@@ -1,3 +1,8 @@
+#macro INFOBOX_X 260
+#macro INFOBOX_Y 120
+#macro INFOBOX_W 60
+#macro INFOBOX_H 60
+
 function actors_draw(){
 	with (oActor_){
 		ds_queue_enqueue(other.actor_render_queue, id);
@@ -65,5 +70,18 @@ function game_declare_methods(){
 		}
 		draw_set_color(c_white);
 		draw_set_alpha(1);
+	}
+	
+	/// @func infobox_draw
+	infobox_draw = function(){
+		draw_set_color(c_black);
+		draw_set_alpha(0.65);
+		draw_rectangle(INFOBOX_X - 1, INFOBOX_Y - 1, INFOBOX_X + INFOBOX_W - 2, INFOBOX_Y + INFOBOX_H - 2, false);
+		draw_set_color(c_white);
+		draw_set_alpha(1);
+		draw_rectangle(INFOBOX_X - 1, INFOBOX_Y - 1, INFOBOX_X + INFOBOX_W - 2, INFOBOX_Y + INFOBOX_H - 2, true);
+		draw_sprite(inspect_data.sprite, inspect_data.frame, INFOBOX_X, INFOBOX_Y);
+		draw_text(INFOBOX_X, INFOBOX_Y + 16, $"WATER {inspect_data.saturation}");
+		draw_text(INFOBOX_X, INFOBOX_Y + 32, $"FOOD  {inspect_data.nutrition}");
 	}
 }

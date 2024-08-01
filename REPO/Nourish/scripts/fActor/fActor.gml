@@ -95,7 +95,7 @@ function block_draw(_id){
 	draw_sprite(_id.sprite_index, _id.image_index ,
 				_id.x           , _id.y          );
 	if (_id == HEARTVINE){
-		var _vine, _tip;
+		var _vine;
 		var _size = array_length(HEARTVINE.vine_arr);
 		for (var _i = 0; _i < _size; _i++){
 			_vine = HEARTVINE.vine_arr[_i];

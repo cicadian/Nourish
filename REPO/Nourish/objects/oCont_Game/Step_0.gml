@@ -25,15 +25,11 @@ if (input_check_pressed("slot_four")){
 
 // Rebuild Surfaces
 if (!surface_exists(floor_surf)){
-	floor_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
-	surface_set_target(floor_surf);
-	draw_clear_alpha(c_black, 1);
-	for (var _w = 0; _w < WORLDSIZE_W; _w++){
-		for (var _h = 0; _h < WORLDSIZE_H; _h++){
-			draw_sprite(global.FLOOR_SPRITES[floor_grid[# _w, _h]], irandom(3), _w * CELLSIZE, _h * CELLSIZE);
-		}
-	}
-	surface_reset_target();
+	render_floor();
+}
+else if (refresh_floor_surf){
+	render_floor();
+	refresh_floor_surf = false;
 }
 if (!surface_exists(wall_surf)){
 	if (sprite_exists(world_sprite)){
@@ -119,3 +115,6 @@ if (DEV_MODE){
 		surface_reset_target();
 	}
 }
+mouse_grid_x = clamp(mouse_x div CELLSIZE, 0, WORLDSIZE_W - 1);
+mouse_grid_y = clamp(mouse_y div CELLSIZE, 0, WORLDSIZE_H - 1);
+inspect_data = floor_grid[# mouse_grid_x, mouse_grid_y];

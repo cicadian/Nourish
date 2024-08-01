@@ -1,5 +1,18 @@
-function render_lights(){
+function render_floor(){
+	floor_surf = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
+	surface_set_target(floor_surf);
+	draw_clear_alpha(c_black, 1);
+	var _floor;
+	for (var _w = 0; _w < WORLDSIZE_W; _w++){
+		for (var _h = 0; _h < WORLDSIZE_H; _h++){
+			_floor = floor_grid[# _w, _h];
+			draw_sprite(_floor.sprite, irandom(3), _w * CELLSIZE, _h * CELLSIZE);
+		}
+	}
+	surface_reset_target();
+}
 
+function render_lights(){
 	light_surf_0 = surface_create(WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE);
 	surface_set_target(light_surf_0);
 	draw_clear_alpha(c_black, 0);
