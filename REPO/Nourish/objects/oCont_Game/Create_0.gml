@@ -8,11 +8,6 @@ dev_draw_grid_value
 */
 #endregion
 
-// Actor Management
-player_create();
-actor_step_queue   = ds_queue_create();
-actor_render_queue = ds_queue_create();
-
 // World Geometry
 wall_grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
 ds_grid_clear(wall_grid, -1);
@@ -78,3 +73,9 @@ cursor_spr = sGUI_Cursor_Default;
 
 // Hotbar
 hotbar = new __hotbar_class();
+
+// Actor Management
+player_create();
+heartvine_create(15, 15);
+actor_step_queue   = ds_queue_create();
+actor_render_queue = ds_queue_create();

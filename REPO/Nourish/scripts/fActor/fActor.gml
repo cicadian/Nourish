@@ -4,6 +4,9 @@ function actor_move(){
 
 function actor_step(_id){
 	with (_id){
+		if (block){
+			continue;
+		}
 		if (global.use_gamepad){
 			vec_x = gamepad_axis_value(global.gamepad_array[0], 0);
 			vec_y = gamepad_axis_value(global.gamepad_array[0], 1);
@@ -76,27 +79,22 @@ function actor_step(_id){
 }
 
 function actor_draw(_id){
+	if (_id.object_index == oActor_Heartvine){
+		var _size = array_length(_id.frames_arr);
+		var _arm;
+		for (var _i = 0; _i < _size; _i++){
+			_arm = _id.frames_arr[_i];
+			draw_sprite(sHeartvine_Arm, _arm[2], _arm[0] * CELLSIZE, _arm[1] * CELLSIZE);
+		}
+	}
 	draw_sprite_ext(_id.sprite_index, _id.image_index ,
 					_id.x           , _id.y           ,
 					_id.image_xscale, _id.image_yscale,
 					_id.image_angle , _id.image_blend ,
 					_id.image_alpha );
-	draw_sprite_ext(sActor_Arrow    ,  0              ,
-					_id.x           , _id.y           ,
-					_id.image_xscale, _id.image_yscale,
-					_id.dir         , c_white         ,
-					1               );
-
-	//draw_sprite_ext(sTile_White, 0, 
-	//_id.grid_x * CELLSIZE, 
-	//_id.grid_y * CELLSIZE, 
-	//1, 1, 0, c_white, 0.65);
-	//draw_sprite_ext(sTile_White, 0,
-	//_id.point_x * CELLSIZE,
-	//_id.point_y * CELLSIZE,
-	//1, 1, 0, c_red, 0.75);
-	//draw_text(_id.x, _id.y, _id.grid_x);
-	//draw_text(_id.x, _id.y + 5, _id.grid_y);
-	//draw_text(_id.x + 24, _id.y + 24, _id.point_x);
-	//draw_text(_id.x + 24, _id.y + 30, _id.point_y);
+	//draw_sprite_ext(sActor_Arrow    ,  0              ,
+	//				_id.x           , _id.y           ,
+	//				_id.image_xscale, _id.image_yscale,
+	//				_id.dir         , c_white         ,
+	//				1               );
 }

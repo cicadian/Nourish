@@ -13,6 +13,16 @@
 #macro DEV_DRAW_GRID_VALUE       true
 #macro DEV_DRAW_COLLISION        false
 #macro KEYMAP_TINYNUM "0123456789"
+enum __DIR8{
+	EAST,
+	NORTHEAST,
+	NORTH,
+	NORTHWEST,
+	WEST,
+	SOUTHWEST,
+	SOUTH,
+	SOUTHEAST
+}
 show_debug_message($"###### Constants defined from {script_get_name(CONSTS_MAIN)}. ######");
 
 setup();

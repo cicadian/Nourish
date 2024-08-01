@@ -92,4 +92,5 @@ function light_add(_x, _y, _value, _value_max){
 		}
 	}
 	_search_inst.clean();
+	GAME.refresh_light_surf = true;
 }
