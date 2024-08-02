@@ -13,7 +13,7 @@
 #macro DEV_DRAW_GRID_VALUE       false
 #macro DEV_DRAW_COLLISION        false
 #macro KEYMAP_TINYNUM "0123456789"
-#macro KEYMAP_TINYTEXT "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890"
+#macro KEYMAP_TINYTEXT "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890-_!?.,"
 enum __DIR8{
 	EAST,
 	NORTHEAST,
@@ -69,6 +69,6 @@ function setup_controllers(){ // Run in Room1 Creation Code
 	global.ready = false;
 	
 	// Create Fonts
-	MAIN.font_tinynum = font_add_sprite_ext(sFont_Tinynum, KEYMAP_TINYNUM, true, 1);
-	draw_set_font(MAIN.font_tinynum);
+	MAIN.font_tinytext = font_add_sprite_ext(sFont_Tinytext, KEYMAP_TINYTEXT, true, 1);
+	draw_set_font(MAIN.font_tinytext);
 }

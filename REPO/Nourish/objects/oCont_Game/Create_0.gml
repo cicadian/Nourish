@@ -27,12 +27,13 @@ var _x, _y;
 repeat(32){
 	_x = irandom(WORLDSIZE_W - 1);
 	_y = irandom(WORLDSIZE_H - 1);
-	floor_set_region(_x, _y, _x + irandom(2), _y + irandom(2), __FLOOR.STONE);
+	var _floor_inst = new __floor_class(-1, -1, __FLOOR.DIRT);
+	ds_grid_modify_region(floor_grid, _x, _y, _x + irandom(2), _y + irandom(2), _floor_inst.set_type, [__FLOOR.STONE]);
 }
-floor_set_disc(1, 1, 3.5, __FLOOR.WATER);
-//ds_grid_set_disk(floor_grid, 8, 12, 2.5, __FLOOR.WATER);
-//ds_grid_set_disk(floor_grid, 10, 13, 2.5, __FLOOR.WATER);
-//ds_grid_set_disk(floor_grid, 15, 15, 2.5, __FLOOR.WATER);
+//floor_set_disc(1, 1, 3.5, __FLOOR.STONE);
+//ds_grid_set_disk(floor_grid, 8, 12, 2.5, __FLOOR.STONE);
+//ds_grid_set_disk(floor_grid, 10, 13, 2.5, __FLOOR.STONE);
+//ds_grid_set_disk(floor_grid, 15, 15, 2.5, __FLOOR.STONE);
 
 // Lighting
 light_grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);

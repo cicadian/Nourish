@@ -6,7 +6,7 @@ function render_floor(){
 	for (var _w = 0; _w < WORLDSIZE_W; _w++){
 		for (var _h = 0; _h < WORLDSIZE_H; _h++){
 			_floor = floor_grid[# _w, _h];
-			draw_sprite(_floor.sprite, irandom(3), _w * CELLSIZE, _h * CELLSIZE);
+			draw_sprite(_floor.sprite, _floor.frame, _w * CELLSIZE, _h * CELLSIZE);
 		}
 	}
 	surface_reset_target();

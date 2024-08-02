@@ -8,7 +8,7 @@ if (surface_exists(actor_surf)){
 	draw_surface_part(actor_surf, cam_x, cam_y, WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE, 0, 0);
 }
 if (surface_exists(shadow_surf)){
-	//draw_surface_part(shadow_surf, cam_x, cam_y, WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE, 0, 0);
+	draw_surface_part(shadow_surf, cam_x, cam_y, WORLDSIZE_W * CELLSIZE, WORLDSIZE_H * CELLSIZE, 0, 0);
 }
 
 if (DEV_MODE){

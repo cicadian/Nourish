@@ -554,6 +554,7 @@
     {"id":{"name":"sDev_GUI","path":"sprites/sDev_GUI/sDev_GUI.yy",},},
     {"id":{"name":"sFloor_Dirt","path":"sprites/sFloor_Dirt/sFloor_Dirt.yy",},},
     {"id":{"name":"sFont_Tinynum","path":"sprites/sFont_Tinynum/sFont_Tinynum.yy",},},
+    {"id":{"name":"sFont_Tinytext","path":"sprites/sFont_Tinytext/sFont_Tinytext.yy",},},
     {"id":{"name":"sGUI_Cursor_Default","path":"sprites/sGUI_Cursor_Default/sGUI_Cursor_Default.yy",},},
     {"id":{"name":"sGUI_Hotbar_Actions","path":"sprites/sGUI_Hotbar_Actions/sGUI_Hotbar_Actions.yy",},},
     {"id":{"name":"sGUI_Hotbar_Selector","path":"sprites/sGUI_Hotbar_Selector/sGUI_Hotbar_Selector.yy",},},
