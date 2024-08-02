@@ -69,15 +69,13 @@ function ds_grid_modify_region(_grid, _x1, _y1, _x2, _y2, _function, _arguments_
 			if (_y1 + _h >= _grid_height){
 				continue;
 			}
-			_cell = _grid[# _x1 + _w, _y1 + _h];
-			if (is_method(_function)){
-				with(_cell){
-					method_call(_function, _arguments_arr);
+			_cell = _grid[# _x1 + _w, _y1 + _h]
+			with (_cell){;
+				if (is_string(_function)){
+					method_call(struct_get(_cell, _function), _arguments_arr);
 				}
-			}
-			else{
-				with (_cell){
-					script_execute(_function, _arguments_arr);
+				else{
+					script_execute_ext(_function, _arguments_arr);
 				}
 			}
 		}
