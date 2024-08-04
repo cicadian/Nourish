@@ -7,6 +7,7 @@ function render_floor(){
 		for (var _h = 0; _h < WORLDSIZE_H; _h++){
 			_floor = floor_grid[# _w, _h];
 			draw_sprite(_floor.sprite, _floor.frame, _w * CELLSIZE, _h * CELLSIZE);
+			draw_sprite(sTile_Water, _floor.water_level, _w * CELLSIZE, _h * CELLSIZE);
 		}
 	}
 	surface_reset_target();
