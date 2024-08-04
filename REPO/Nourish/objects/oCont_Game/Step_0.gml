@@ -118,3 +118,17 @@ if (DEV_MODE){
 mouse_grid_x = clamp(mouse_x div CELLSIZE, 0, WORLDSIZE_W - 1);
 mouse_grid_y = clamp(mouse_y div CELLSIZE, 0, WORLDSIZE_H - 1);
 inspect_data = floor_grid[# mouse_grid_x, mouse_grid_y];
+
+if (flow_update_counter >= flow_update_counter_max){
+	var _cell;
+	var _size = array_length(water_update_arr);
+	if (_size > 0){
+		array_shuffle_ext(water_update_arr);
+	}
+	for (var _i = 0; _i < _size; _i++){
+		_cell = water_update_arr[_i];
+		_cell.flow();
+	}
+	flow_update_counter = -1;
+}
+flow_update_counter++;

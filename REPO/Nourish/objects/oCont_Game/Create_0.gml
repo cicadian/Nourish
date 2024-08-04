@@ -22,6 +22,9 @@ for (var _i = 0; _i < WORLDSIZE_W; _i++){
 // Floors
 floor_grid = ds_grid_create(WORLDSIZE_W, WORLDSIZE_H);
 floor_clear();
+water_update_arr = []
+flow_update_counter = 0;
+flow_update_counter_max = 1;
 
 var _x, _y;
 repeat(32){
@@ -29,6 +32,9 @@ repeat(32){
 	_y = irandom(WORLDSIZE_H - 1);
 	ds_grid_modify_region(floor_grid, _x, _y, _x + irandom(2), _y + irandom(2), "set_type", [__FLOOR.STONE]);
 }
+ds_grid_modify_region_ext(floor_grid, 1, 1, 3, 3, ["channel", "set_water_level", "flow"], [[], [10], []]);
+ds_grid_modify_region_ext(floor_grid, 4, 3, 6, 4, ["channel", "set_water_level", "flow"], [[], [0], []]);
+
 //floor_set_disc(1, 1, 3.5, __FLOOR.STONE);
 //ds_grid_set_disk(floor_grid, 8, 12, 2.5, __FLOOR.STONE);
 //ds_grid_set_disk(floor_grid, 10, 13, 2.5, __FLOOR.STONE);

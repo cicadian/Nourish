@@ -83,5 +83,6 @@ function game_declare_methods(){
 		draw_sprite(inspect_data.sprite, inspect_data.frame, INFOBOX_X, INFOBOX_Y);
 		draw_text(INFOBOX_X, INFOBOX_Y + 16, $"WATER {inspect_data.saturation}");
 		draw_text(INFOBOX_X, INFOBOX_Y + 32, $"FOOD  {inspect_data.nutrition}");
+		draw_text(INFOBOX_X, INFOBOX_Y + 48, $"DEPTH {inspect_data.water_level}");
 	}
 }
