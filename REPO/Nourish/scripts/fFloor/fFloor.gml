@@ -23,6 +23,7 @@ function __floor_class(_x, _y, _type) constructor{
 	
 	channeled = false;
 	water_level = 0;
+	water_update = false;
 	
 	adjacent_arr = [undefined, undefined, undefined, undefined];
 	
@@ -60,28 +61,76 @@ function __floor_class(_x, _y, _type) constructor{
 		var _index = array_get_index(GAME.water_update_arr, self);
 		if (water_level > 1){
 			if (_index == -1){
-				array_push(GAME.water_update_arr, self);
+				for (var _i = 0; _i < 4; _i++){
+					if (adjacent_arr[_i] == undefined){continue};
+					if (adjacent_arr[_i].water_level < water_level){
+						array_push(GAME.water_update_arr, self);
+						break;
+					}
+				}
 			}
 		}
 		else{
 			if (_index != -1){
-				// this is being run in the for loop! please delete this at another point!
 				array_delete(GAME.water_update_arr, _index, 1);
 			}
 		}
 		GAME.refresh_floor_surf = true;
 	}
 	static flow = function(){
-		var _cell;
+		var _cell, _cell_adjacent;
+		var _flow_arr = [];
+		//var _flow_size = 0;
+		// Figure out which cells we can flow to
 		for (var _i = 0; _i < 4; _i++){
 			_cell = adjacent_arr[_i];
 			if (_cell == undefined){continue};
 			if (!_cell.channeled){continue};
-			if (water_level <= 1){continue};
+			if (water_level <= 0){continue};
 			if (water_level <= _cell.water_level){continue};
+			// Find default value
+			var _all_same = false;
+			var _unique_values = [];
+			for (var _j = 0; _j < 4; _j++){
+				if (adjacent_arr[_j] == undefined){continue};
+				array_push(_unique_values, adjacent_arr[_j]);
+			}
+			array_unique_ext(_unique_values);
+			if (array_length(_unique_values) == 1){
+				_all_same = true;
+			}
+			if (_all_same && abs(water_level - _unique_values[0]) < 2){continue};
+			array_push(_flow_arr, _cell);
 			set_water_level(water_level - 1);
 			_cell.set_water_level(_cell.water_level + 1);
+			//_flow_size++;
 		}
+		/*
+		// Figure out if flowing to a cell would make sense
+		var _flow_sum_arr = [];
+		var _sum;
+		// For each cell, get the sum of its neighbors
+		for (var _i = 0; _i < _flow_size; _i++){
+			_cell = _flow_arr[_i];
+			_sum = 0;
+			for (var _j = 0; _j < 4; _j++){
+				if (_cell.adjacent_arr[_j] == undefined){continue};
+				_sum += _cell.adjacent_arr[_j].water_level;
+			}
+			array_push(_flow_sum_arr, _sum);
+		}
+		array_sort(_flow_sum_arr, true);
+		
+		var _water_level_difference;
+		for (var _i = 0; _i < _flow_size; _i++){
+			// prevent water going back and forth forever without infinite granularity
+			// get sum of neighbors where water wants to flow, minus one
+			// if the sums of flow targets are the same AND the water level difference is one, skip
+			_cell = _flow_arr[_i];
+			_water_level_difference = abs(water_level - _cell.water_level);
+			//if ((array_first(_flow_sum_arr) == array_last(_flow_sum_arr) && (array_length(_flow_sum_arr) > 1)) && _water_level_difference >= 1){continue};
+		}
+		*/
 	}
 }
 // TODO generalize if possible

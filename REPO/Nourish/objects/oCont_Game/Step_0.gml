@@ -119,16 +119,26 @@ mouse_grid_x = clamp(mouse_x div CELLSIZE, 0, WORLDSIZE_W - 1);
 mouse_grid_y = clamp(mouse_y div CELLSIZE, 0, WORLDSIZE_H - 1);
 inspect_data = floor_grid[# mouse_grid_x, mouse_grid_y];
 
-if (flow_update_counter >= flow_update_counter_max){
+//if (flow_update_counter >= flow_update_counter_max){
+if (keyboard_check_pressed(vk_lcontrol)){
 	var _cell;
 	var _size = array_length(water_update_arr);
 	if (_size > 0){
-		array_shuffle_ext(water_update_arr);
+		//array_shuffle_ext(water_update_arr);
 	}
 	for (var _i = 0; _i < _size; _i++){
 		_cell = water_update_arr[_i];
+		ds_queue_enqueue(water_update_queue, _cell);
+	}
+	//show_debug_message($"Updating {ds_queue_size(water_update_queue)} water cells");
+	while (!ds_queue_empty(water_update_queue)){
+		_cell = ds_queue_dequeue(water_update_queue);
 		_cell.flow();
 	}
 	flow_update_counter = -1;
 }
-flow_update_counter++;
+//flow_update_counter++;
+
+if (keyboard_check_pressed(vk_tab)){
+	ds_grid_modify_region_ext(floor_grid, 7, 3, 12, 6, ["channel", "set_water_level", "flow"], [[], [0], []]);
+}
